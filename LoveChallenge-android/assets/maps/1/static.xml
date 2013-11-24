@@ -1,0 +1,13 @@
+<static>
+
+    <banana
+        height="40"
+        width="40" >
+    </banana>
+
+    <car
+        height="100"
+        width="170" >
+    </car>
+
+</static>
