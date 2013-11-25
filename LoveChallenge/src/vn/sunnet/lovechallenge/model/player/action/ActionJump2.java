@@ -22,7 +22,7 @@ public class ActionJump2 implements PlayerActionState {
 	}
 
 	@Override
-	public void collistionImpedimet() {
+	public void collistionImpedimet(float delta) {
 		// TODO Auto-generated method stub
 
 	}

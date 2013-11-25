@@ -6,6 +6,7 @@ import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump1;
 import vn.sunnet.lovechallenge.model.player.action.ActionRun;
 import vn.sunnet.lovechallenge.model.player.action.ActionSit;
+import vn.sunnet.lovechallenge.model.player.action.ActionStop;
 import vn.sunnet.lovechallenge.utils.AnimationSprite;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,13 +19,14 @@ public class PlayerRenderer {
 	AnimationSprite run_body;
 	AnimationSprite jump1;
 	AnimationSprite sit;
+	AnimationSprite diejump;
 
 	public PlayerRenderer(World world) {
 		this.world = world;
 		player = world.getPlayer();
 
 		run_body = Resources.getInstance().player_run;
-		run_body.setPosition(world.getPlayer().getPosition().x-50, world
+		run_body.setPosition(world.getPlayer().getPosition().x, world
 				.getPlayer().getPosition().y);
 
 		jump1 = Resources.getInstance().player_jump_1;
@@ -32,6 +34,10 @@ public class PlayerRenderer {
 		sit = Resources.getInstance().player_sit;
 		sit.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
 				.getPosition().y);
+
+		diejump = Resources.getInstance().player_die_jump;
+		diejump.setPosition(world.getPlayer().getPosition().x, world
+				.getPlayer().getPosition().y);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
@@ -42,6 +48,8 @@ public class PlayerRenderer {
 			jump1.getKeyFrame(player.getStateTimeJump1(), false).draw(batch);
 		} else if (player.getActionState() instanceof ActionSit) {
 			sit.getKeyFrame(player.getStateTimeSit(), false).draw(batch);
+		} else if (player.getActionState() instanceof ActionStop) {
+			diejump.getKeyFrame(player.getTimeDie(), false).draw(batch);
 		}
 
 	}

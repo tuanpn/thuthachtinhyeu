@@ -5,6 +5,7 @@ import vn.sunnet.lovechallenge.model.player.action.ActionJump1;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump2;
 import vn.sunnet.lovechallenge.model.player.action.ActionRun;
 import vn.sunnet.lovechallenge.model.player.action.ActionSit;
+import vn.sunnet.lovechallenge.model.player.action.ActionStop;
 import vn.sunnet.lovechallenge.model.player.action.PlayerActionState;
 import vn.sunnet.lovechallenge.model.player.state.CollistionImpedimentState;
 import vn.sunnet.lovechallenge.model.player.state.DispiritedState;
@@ -59,6 +60,7 @@ public class Player {
 	private PlayerActionState jumpState1;
 	private PlayerActionState jumpState2;
 	private PlayerActionState sitState;
+	private PlayerActionState stopState;
 	private float stateTimeSit;
 	private float stateTimeRun;
 	private float stateTimeJump1;
@@ -73,10 +75,12 @@ public class Player {
 	private boolean flingUp;
 	private boolean flingDown;
 
-	/*
-	 * 0 : không có va chạm 1 : va chạm static 2 : va chạm Dynamic
-	 */
-	private int colistionState = 0;
+	private int colistionState;
+
+	private float timeDie;
+
+	// dung hinh
+	private boolean stopUpdate;
 
 	public Player(int id) {
 		this.id = id;
@@ -99,6 +103,7 @@ public class Player {
 		setJumpState1(new ActionJump1(this));
 		setJumpState2(new ActionJump2(this));
 		setSitState(new ActionSit(this));
+		setStopState(new ActionStop(this));
 
 		actionState = runState;
 	}
@@ -111,8 +116,8 @@ public class Player {
 		this.actionState.flingdown();
 	}
 
-	public void collistionImpedimet() {
-		this.actionState.collistionImpedimet();
+	public void collistionImpedimet(float delta) {
+		this.actionState.collistionImpedimet(delta);
 	}
 
 	public void idleRun(float delta) {
@@ -231,6 +236,22 @@ public class Player {
 		this.jumpState2 = jumpState2;
 	}
 
+	public float getTimeDie() {
+		return timeDie;
+	}
+
+	public void setTimeDie(float timeDie) {
+		this.timeDie = timeDie;
+	}
+
+	public PlayerActionState getStopState() {
+		return stopState;
+	}
+
+	public void setStopState(PlayerActionState stopState) {
+		this.stopState = stopState;
+	}
+
 	public boolean isFlingDown() {
 		return flingDown;
 	}
@@ -279,11 +300,31 @@ public class Player {
 		this.percentageStateBar = percentageStateBar;
 	}
 
+	public int getColistionState() {
+		return colistionState;
+	}
+
+	/**
+	 * 
+	 * @param colistionState
+	 *            0 : không có va chạm 1 : va chạm với static 2 : va chạm với
+	 *            dynamic
+	 */
+	public void setColistionState(int colistionState) {
+		this.colistionState = colistionState;
+	}
+
+	public boolean isStopUpdate() {
+		return stopUpdate;
+	}
+
+	public void setStopUpdate(boolean stopUpdate) {
+		this.stopUpdate = stopUpdate;
+	}
+
 	public void update(float delta) {
 		if (actionState instanceof ActionRun) {
 			stateTimeRun += delta;
-		} else if (actionState instanceof ActionJump1) {
-			stateTimeJump1 += delta;
 		}
 
 		// position
@@ -294,9 +335,13 @@ public class Player {
 			bounds.x = position.x + 50;
 			bounds.y = position.y + 70;
 		} else {
-			bounds.x = position.x;
+			bounds.x = position.x + 50;
 			bounds.y = position.y;
 		}
+
+	}
+
+	public void reset() {
 
 	}
 

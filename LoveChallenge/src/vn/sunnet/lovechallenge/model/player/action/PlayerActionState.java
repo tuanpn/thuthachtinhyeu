@@ -15,7 +15,7 @@ public interface PlayerActionState {
 	/**
 	 * hành động va chạm với chướng ngại vật
 	 */
-	public void collistionImpedimet();
+	public void collistionImpedimet(float delta);
 	
 	/**
 	 * Hành động chuyển sang trạng thái run bình thường

@@ -11,6 +11,7 @@ public class Collision {
 			if (player.getBounds().overlaps(impediment.getBounds())
 					&& impediment.isCollisionPlayer()) {
 				player.setPercentageStateBar(player.getPercentageStateBar() - 10);
+				player.setColistionState(1);
 				impediment.setCollisionPlayer(false);
 			}
 		}

@@ -1,6 +1,7 @@
 package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
+import vn.sunnet.lovechallenge.model.World;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,6 +9,8 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class HouseRenderer {
 
+	private World world;
+	
 	private Sprite house1;
 	private Sprite house11;
 	private Sprite house2;
@@ -36,7 +39,8 @@ public class HouseRenderer {
 	// đoạn đường lặp lại của nhà
 	private float widthHouse = 3000;
 
-	public HouseRenderer() {
+	public HouseRenderer(World world) {
+		this.world = world;
 		// ===1===
 		house1 = Resources.getInstance().house1Sprite;
 		house1.setPosition(0, 70);
@@ -200,8 +204,11 @@ public class HouseRenderer {
 	}
 
 	private void setXSprite(Sprite sprite, float delta, boolean random) {
-		float deltaX = -200 * delta;
-		sprite.setX(sprite.getX() + deltaX);
+		if (!world.isStop()) {
+			float deltaX = -200 * delta;
+			sprite.setX(sprite.getX() + deltaX);
+		}
+	
 		if (0 > sprite.getX() + sprite.getWidth()) {
 			if (!random)
 				sprite.setX(sprite.getX() + widthHouse);

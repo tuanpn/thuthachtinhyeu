@@ -36,7 +36,7 @@ public class WorldRenderer {
 		batcher = new SpriteBatch();
 		batcher.setProjectionMatrix(cam.combined);
 
-		bgRenderer = new BackgroundRenderer();
+		bgRenderer = new BackgroundRenderer(world);
 		playerRenderer = new PlayerRenderer(world);
 		staticRenderer = new StaticRenderer(world);
 	}
@@ -45,12 +45,12 @@ public class WorldRenderer {
 
 		batcher.begin();
 		bgRenderer.render(batcher, delta);
-		playerRenderer.render(batcher, delta);
 		staticRenderer.render(batcher, delta);
+		playerRenderer.render(batcher, delta);
 		batcher.end();
 
-		if (debug)
-			drawDebug();
+//		if (debug)
+//			drawDebug();
 	}
 
 	ShapeRenderer renderer = new ShapeRenderer();

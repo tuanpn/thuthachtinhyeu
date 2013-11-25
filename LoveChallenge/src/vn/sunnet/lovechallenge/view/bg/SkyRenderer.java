@@ -1,6 +1,7 @@
 package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
+import vn.sunnet.lovechallenge.model.World;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,8 +20,11 @@ public class SkyRenderer {
 
 	// biến cờ
 	boolean check = true;
+	
+	private World world;
 
-	public SkyRenderer() {
+	public SkyRenderer(World world) {
+		this.world = world;
 		bgSprite1 = Resources.getInstance().skySprite;
 		bgSprite1.setPosition(0, 201);
 		width = bgSprite1.getWidth();
@@ -31,8 +35,11 @@ public class SkyRenderer {
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		float deltaX = -50 * delta;
-		bgSprite1.setX(bgSprite1.getX() + deltaX);
+		if(!world.isStop()) {
+			float deltaX = -50 * delta;
+			bgSprite1.setX(bgSprite1.getX() + deltaX);
+		}
+		
 		if (bgSprite1.getX() + width < 0) {
 			bgSprite1.setX(bgSprite1.getX() + width + width);
 			check = false;

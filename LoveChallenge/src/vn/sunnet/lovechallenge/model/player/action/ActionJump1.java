@@ -24,28 +24,44 @@ public class ActionJump1 implements PlayerActionState {
 
 	@Override
 	public void flingdown() {
-		// TODO Auto-generated method stub
-
+		player.setFlingDown(false);
 	}
 
 	@Override
-	public void collistionImpedimet() {
-		// TODO Auto-generated method stub
+	public void collistionImpedimet(float delta) {
+		switch (player.getColistionState()) {
+		case 0:
 
+			break;
+		case 1:
+			player.setActionState(player.getStopState());
+			break;
+		case 2:
+
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override
 	public void idleRun(float delta) {
-		if (player.getPosition().y < player.POSITION_INIT_Y
-				&& player.getVeloctity().y < 0) {
-			player.getAccelation().y = 0;
-			player.getVeloctity().y = 0;
-			player.getPosition().y = player.POSITION_INIT_Y;
-			player.setStateTimeJump1(0);
-			player.setActionState(player.getRunState());
-			player.getBounds().width = player.WIDTH_RUN;
-			player.getBounds().height = player.HEIGHT_RUN;
+		if (player.getColistionState() == 0) {
+			if (player.getPosition().y < player.POSITION_INIT_Y
+					&& player.getVeloctity().y < 0) {
+				player.getAccelation().y = 0;
+				player.getVeloctity().y = 0;
+				player.getPosition().y = player.POSITION_INIT_Y;
+				player.setStateTimeJump1(0);
+				player.setActionState(player.getRunState());
+				player.getBounds().width = player.WIDTH_RUN;
+				player.getBounds().height = player.HEIGHT_RUN;
+			} else {
+				player.setStateTimeJump1(player.getStateTimeJump1() + delta);
+			}
 		}
+
 	}
 
 }

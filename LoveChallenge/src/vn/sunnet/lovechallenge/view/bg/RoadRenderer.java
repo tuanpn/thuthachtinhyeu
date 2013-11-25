@@ -1,6 +1,8 @@
 package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
+import vn.sunnet.lovechallenge.controller.LoadMap;
+import vn.sunnet.lovechallenge.model.World;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,18 +14,27 @@ public class RoadRenderer {
 	private float width;
 
 	boolean check = true;
-
-	public RoadRenderer() {
+	
+	float velocity;
+	
+	private World world;
+	
+	public RoadRenderer(World world) {
+		this.world = world;
 		roadSprite1 = Resources.getInstance().roadSprite;
 		width = roadSprite1.getWidth();
 
 		roadSprite2 = new Sprite(roadSprite1);
 		roadSprite2.setPosition(roadSprite1.getY() + width, roadSprite1.getY());
+		
+		velocity = LoadMap.player_velocity_x;
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		float deltaX = -300 * delta;
-		roadSprite1.setX(roadSprite1.getX() + deltaX);
+		if(!world.isStop()) {
+			float deltaX = -velocity * delta;
+			roadSprite1.setX(roadSprite1.getX() + deltaX);
+		}
 
 		if (0 > roadSprite1.getX() + width) {
 			roadSprite1.setX(roadSprite1.getX() + width + width);

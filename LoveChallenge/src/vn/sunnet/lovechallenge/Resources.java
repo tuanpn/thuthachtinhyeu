@@ -60,9 +60,17 @@ public class Resources {
 	public AnimationSprite player_run;
 	public AnimationSprite player_jump_1;
 	public AnimationSprite player_sit;
+	public AnimationSprite player_die_jump;
+	public AnimationSprite player_die_run;;
 
 	public Sprite car1Sprite;
 	public Sprite car2Sprite;
+	public Sprite box1Sprite;
+	public Sprite box2Sprite;
+	public Sprite static1Sprite;
+	public Sprite static2Sprite;
+	public Sprite static3Sprite;
+	public Sprite static4Sprite;
 
 	public void getGameScreen(AssetManager manager1, AssetManager manager2) {
 		// ============sky=================
@@ -107,10 +115,28 @@ public class Resources {
 		player_sit = new AnimationSprite(1f / player_sit_1_frames.size,
 				player_sit_1_frames);
 		player_sit.setPlayMode(AnimationSprite.NORMAL);
-		
-		TextureAtlas staticObjects = manager1.get("staticobject/staticobject.atlas");
+		// die
+		Array<Sprite> player_die_jump_frames = player.createSprites("die_jump");
+		player_die_jump = new AnimationSprite(1f / player_die_jump_frames.size,
+				player_die_jump_frames);
+		player_die_jump.setPlayMode(AnimationSprite.NORMAL);
+		// die run
+		Array<Sprite> player_die_run_frames = player.createSprites("die_run");
+		player_die_run = new AnimationSprite(1f / player_die_run_frames.size,
+				player_die_run_frames);
+		player_die_run.setPlayMode(AnimationSprite.NORMAL);
+
+		// static
+		TextureAtlas staticObjects = manager1
+				.get("staticobject/staticobject.atlas");
 		car1Sprite = staticObjects.createSprite("o-to");
 		car2Sprite = staticObjects.createSprite("o-to-2");
+		box1Sprite = staticObjects.createSprite("box-1");
+		box2Sprite = staticObjects.createSprite("box-2");
+		static1Sprite = staticObjects.createSprite("vc-1");
+		static2Sprite = staticObjects.createSprite("vc-2");
+		static3Sprite = staticObjects.createSprite("vc-4");
+		static4Sprite = staticObjects.createSprite("vc-5");
 	}
 
 }

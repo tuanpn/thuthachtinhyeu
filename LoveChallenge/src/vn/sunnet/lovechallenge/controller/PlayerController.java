@@ -48,7 +48,7 @@ public class PlayerController {
 		// player action
 		player.flingup();
 		player.flingdown();
-		player.collistionImpedimet();
+		player.collistionImpedimet(delta);
 		player.idleRun(delta);
 
 	}

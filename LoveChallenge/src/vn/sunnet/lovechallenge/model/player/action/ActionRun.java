@@ -19,7 +19,7 @@ public class ActionRun implements PlayerActionState {
 			player.getBounds().width = player.WIDTH_JUMP;
 			player.getBounds().height = player.HEIGHT_JUMP;
 			player.setFlingUp(false);
-		} else if(player.isFlingDown()) {
+		} else if (player.isFlingDown()) {
 			player.getBounds().width = player.WIDTH_SIT;
 			player.getBounds().height = player.HEIGHT_SIT;
 			player.setActionState(player.getSitState());
@@ -33,8 +33,21 @@ public class ActionRun implements PlayerActionState {
 	}
 
 	@Override
-	public void collistionImpedimet() {
-		
+	public void collistionImpedimet(float delta) {
+		switch (player.getColistionState()) {
+		case 0:
+
+			break;
+		case 1:
+			player.setActionState(player.getStopState());
+			break;
+		case 2:
+
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override

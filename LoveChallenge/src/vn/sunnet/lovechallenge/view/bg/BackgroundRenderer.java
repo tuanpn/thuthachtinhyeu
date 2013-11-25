@@ -1,5 +1,7 @@
 package vn.sunnet.lovechallenge.view.bg;
 
+import vn.sunnet.lovechallenge.model.World;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class BackgroundRenderer {
@@ -9,11 +11,11 @@ public class BackgroundRenderer {
 	HouseBGRenderer housebg;
 	HouseRenderer houseRenderer;
 
-	public BackgroundRenderer() {
-		skyRenderer = new SkyRenderer();
-		roadRenderer = new RoadRenderer();
-		housebg = new HouseBGRenderer();
-		houseRenderer = new HouseRenderer();
+	public BackgroundRenderer(World world) {
+		skyRenderer = new SkyRenderer(world);
+		roadRenderer = new RoadRenderer(world);
+		housebg = new HouseBGRenderer(world);
+		houseRenderer = new HouseRenderer(world);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
