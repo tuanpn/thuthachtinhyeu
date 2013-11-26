@@ -14,8 +14,8 @@ public class DesktopGame {
 		settings.maxHeight = 1024;
 		settings.filterMin = TextureFilter.Linear;
 		settings.filterMag = TextureFilter.Linear;
-		TexturePacker2.process(settings, "images/player",
-				"game-android/assets/player", "player");
+		TexturePacker2.process(settings, "images/player2",
+				"game-android/assets/player2", "player");
 
 		// new LwjglApplication(new Game(), "Game", 320, 480, false);
 	}
