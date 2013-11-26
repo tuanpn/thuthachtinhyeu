@@ -1,8 +1,6 @@
 package vn.sunnet.lovechallenge;
 
-import vn.sunnet.lovechallenge.utils.AnimationCompositeSprite;
 import vn.sunnet.lovechallenge.utils.AnimationSprite;
-import vn.sunnet.lovechallenge.utils.CompositeSprite;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,18 +9,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 
-public class Resources {
+public class Resources2 {
 
-	private static Resources instance;
+	private static Resources2 instance;
 
-	public static Resources getInstance() {
+	public static Resources2 getInstance() {
 		if (instance == null) {
-			instance = new Resources();
+			instance = new Resources2();
 		}
 		return instance;
 	}
 
-	public Resources() {
+	public Resources2() {
 
 	}
 
@@ -59,13 +57,11 @@ public class Resources {
 	public Sprite wall2Sprite;
 	public Sprite bghouseSprite;
 
-	public AnimationCompositeSprite player_run_normal;
-	public AnimationCompositeSprite player_run_cry;
-	public AnimationCompositeSprite player_run_scare;
-	// public AnimationCompositeSprite player_jump_1;
-	// public AnimationCompositeSprite player_sit;
-	// public AnimationCompositeSprite player_die_jump;
-	// public AnimationCompositeSprite player_die_run;
+	public AnimationSprite player_run;
+	public AnimationSprite player_jump_1;
+	public AnimationSprite player_sit;
+	public AnimationSprite player_die_jump;
+	public AnimationSprite player_die_run;;
 
 	public Sprite car1Sprite;
 	public Sprite car2Sprite;
@@ -103,48 +99,32 @@ public class Resources {
 		bghouseTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		bghouseSprite = new Sprite(bghouseTexture);
 
-		TextureAtlas playerAtlas = manager1.get("player/player.atlas");
+		TextureAtlas player = manager1.get("player/player.atlas");
 		// run
-		Array<CompositeSprite> player_runFrames = getArrayCompositeSprite(12,
-				"run-1", "run-normal", playerAtlas);
-		player_run_normal = new AnimationCompositeSprite(
-				0.8f / player_runFrames.size, player_runFrames);
-		player_run_normal.setPlayMode(AnimationSprite.LOOP);
-
-		Array<CompositeSprite> player_run_cry_Frames = getArrayCompositeSprite(
-				12, "run-1", "run-cry", playerAtlas);
-		player_run_cry = new AnimationCompositeSprite(
-				0.8f / player_run_cry_Frames.size, player_run_cry_Frames);
-		player_run_cry.setPlayMode(AnimationSprite.LOOP);
-
-		Array<CompositeSprite> player_run_scare_Frames = getArrayCompositeSprite(
-				12, "run-1", "run-scare", playerAtlas);
-		player_run_scare = new AnimationCompositeSprite(
-				0.8f / player_run_scare_Frames.size, player_run_scare_Frames);
-		player_run_scare.setPlayMode(AnimationSprite.LOOP);
-		// // jump1
-		// Array<Sprite> player_jump_1_frames = player.createSprites("jump_1");
-		// player_jump_1 = new AnimationSprite((0.51f + 0.51f)
-		// / player_jump_1_frames.size, player_jump_1_frames);
-		// player_jump_1.setPlayMode(AnimationSprite.NORMAL);
-		// // sit
-		// Array<Sprite> player_sit_1_frames = player.createSprites("sit");
-		// player_sit = new AnimationSprite(1f / player_sit_1_frames.size,
-		// player_sit_1_frames);
-		// player_sit.setPlayMode(AnimationSprite.NORMAL);
-		// // die
-		// Array<Sprite> player_die_jump_frames =
-		// player.createSprites("die_jump");
-		// player_die_jump = new AnimationSprite(1f /
-		// player_die_jump_frames.size,
-		// player_die_jump_frames);
-		// player_die_jump.setPlayMode(AnimationSprite.NORMAL);
-		// // die run
-		// Array<Sprite> player_die_run_frames =
-		// player.createSprites("die_run");
-		// player_die_run = new AnimationSprite(1f / player_die_run_frames.size,
-		// player_die_run_frames);
-		// player_die_run.setPlayMode(AnimationSprite.NORMAL);
+		Array<Sprite> player_runFrames = player.createSprites("run");
+		player_run = new AnimationSprite(0.8f / player_runFrames.size,
+				player_runFrames);
+		player_run.setPlayMode(AnimationSprite.LOOP);
+		// jump1
+		Array<Sprite> player_jump_1_frames = player.createSprites("jump_1");
+		player_jump_1 = new AnimationSprite((0.51f + 0.51f)
+				/ player_jump_1_frames.size, player_jump_1_frames);
+		player_jump_1.setPlayMode(AnimationSprite.NORMAL);
+		// sit
+		Array<Sprite> player_sit_1_frames = player.createSprites("sit");
+		player_sit = new AnimationSprite(1f / player_sit_1_frames.size,
+				player_sit_1_frames);
+		player_sit.setPlayMode(AnimationSprite.NORMAL);
+		// die
+		Array<Sprite> player_die_jump_frames = player.createSprites("die_jump");
+		player_die_jump = new AnimationSprite(1f / player_die_jump_frames.size,
+				player_die_jump_frames);
+		player_die_jump.setPlayMode(AnimationSprite.NORMAL);
+		// die run
+		Array<Sprite> player_die_run_frames = player.createSprites("die_run");
+		player_die_run = new AnimationSprite(1f / player_die_run_frames.size,
+				player_die_run_frames);
+		player_die_run.setPlayMode(AnimationSprite.NORMAL);
 
 		// static
 		TextureAtlas staticObjects = manager1
@@ -157,27 +137,6 @@ public class Resources {
 		static2Sprite = staticObjects.createSprite("vc-2");
 		static3Sprite = staticObjects.createSprite("vc-4");
 		static4Sprite = staticObjects.createSprite("vc-5");
-	}
-
-	public Array<CompositeSprite> getArrayCompositeSprite(int lengFrame,
-			String nameBody, String nameHeadState, TextureAtlas atlas) {
-
-		Array<CompositeSprite> frames = new Array<CompositeSprite>();
-		for (int i = 0; i < lengFrame; i++) {
-			frames.add(new CompositeSprite());
-		}
-		for (int i = 0; i < frames.size; i++) {
-			int index = i + 1;
-			String pathBody = "body/" + nameBody + "-(" + index + ")";
-			String pathHead = "head/" + nameHeadState + "-(" + index + ")";
-			// System.out.println(pathBody + " " + pathhead);
-			Sprite body = atlas.createSprite(pathHead);
-			Sprite head = atlas.createSprite(pathBody);
-			frames.get(i).addComponentSprite(body);
-			frames.get(i).addComponentSprite(head);
-		}
-
-		return frames;
 	}
 
 }

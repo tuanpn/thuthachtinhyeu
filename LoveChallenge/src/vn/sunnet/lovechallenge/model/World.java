@@ -32,8 +32,6 @@ public class World {
 	private float stateTimeObject;
 	private float timeCreate = 3;
 
-	private boolean stop;
-
 	public Player getPlayer() {
 		return player;
 	}

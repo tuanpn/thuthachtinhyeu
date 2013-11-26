@@ -79,7 +79,9 @@ public class Player {
 
 	private float timeDie;
 
-	// dung hinh
+	/*
+	 * dừng hình,không cập nhật chạy
+	 */
 	private boolean stopUpdate;
 
 	public Player(int id) {
@@ -106,6 +108,14 @@ public class Player {
 		setStopState(new ActionStop(this));
 
 		actionState = runState;
+		
+		stateTimeSit = 0;
+		stateTimeRun = 0;
+		stateTimeJump1 = 0;
+		flingUp = false;
+		flingDown = false;
+		timeDie = 0;
+		stopUpdate = false;
 	}
 
 	public void flingup() {
@@ -342,7 +352,7 @@ public class Player {
 	}
 
 	public void reset() {
-
+		
 	}
 
 }
