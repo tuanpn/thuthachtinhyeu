@@ -37,7 +37,8 @@ public class ActionJump1 implements PlayerActionState {
 			player.setActionState(player.getStopState());
 			break;
 		case 2:
-
+			player.setColistionState(0);
+			player.setActionState(player.getRunOnCarState());
 			break;
 
 		default:
@@ -50,18 +51,15 @@ public class ActionJump1 implements PlayerActionState {
 		if (player.getColistionState() == 0) {
 			if (player.getPosition().y < player.POSITION_INIT_Y
 					&& player.getVeloctity().y < 0) {
-				player.getAccelation().y = 0;
-				player.getVeloctity().y = 0;
-				player.getPosition().y = player.POSITION_INIT_Y;
-				player.setStateTimeJump1(0);
-				player.setActionState(player.getRunState());
-				player.getBounds().width = player.WIDTH_RUN;
-				player.getBounds().height = player.HEIGHT_RUN;
-			} else {
-				player.setStateTimeJump1(player.getStateTimeJump1() + delta);
+				player.resetAll();
 			}
 		}
 
+	}
+
+	@Override
+	public int getID() {
+		return 1;
 	}
 
 }

@@ -38,4 +38,9 @@ public class ActionJump2 implements PlayerActionState {
 		}
 	}
 
+	@Override
+	public int getID() {
+		return 4;
+	}
+
 }

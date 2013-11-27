@@ -77,6 +77,8 @@ public class LoadMap {
 	public static int static_3_height;
 	public static int static_4_width;
 	public static int static_4_height;
+	public static int static_car_long_width;
+	public static int static_car_long_height;
 
 	public static void loadMapStatic() {
 		try {
@@ -138,6 +140,13 @@ public class LoadMap {
 			String static4_string_height = xml_element_static.getChildByName(
 					"static4").getAttribute("height");
 			static_4_height = Integer.parseInt(static4_string_height);
+			// car long
+			String car_string_long_width = xml_element_static.getChildByName("carlong")
+					.getAttribute("width");
+			static_car_long_width = Integer.parseInt(car_string_long_width);
+			String car_string_long_height = xml_element_static.getChildByName("carlong")
+					.getAttribute("height");
+			static_car_long_height = Integer.parseInt(car_string_long_height);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

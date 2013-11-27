@@ -34,7 +34,7 @@ public class Resources {
 
 		manager1.load("player/player.atlas", TextureAtlas.class);
 
-		manager1.load("staticobject/staticobject.atlas", TextureAtlas.class);
+		manager1.load("staticobject/staticobjects.atlas", TextureAtlas.class);
 	}
 
 	public void unloadGameScreen(AssetManager manager1, AssetManager manager2) {
@@ -43,7 +43,7 @@ public class Resources {
 		manager1.unload("bg/house.atlas");
 		manager1.unload("bg/bghouse.png");
 		manager1.unload("player/player.atlas");
-		manager1.unload("staticobject/staticobject.atlas");
+		manager1.unload("staticobject/staticobjects.atlas");
 	}
 
 	public Sprite skySprite;
@@ -62,10 +62,11 @@ public class Resources {
 	public AnimationCompositeSprite player_run_normal;
 	public AnimationCompositeSprite player_run_cry;
 	public AnimationCompositeSprite player_run_scare;
-	// public AnimationCompositeSprite player_jump_1;
-	// public AnimationCompositeSprite player_sit;
-	// public AnimationCompositeSprite player_die_jump;
-	// public AnimationCompositeSprite player_die_run;
+	public AnimationCompositeSprite player_jump_1;
+	public AnimationCompositeSprite player_jump_2;
+	public AnimationCompositeSprite player_sit;
+	public AnimationCompositeSprite player_die_1;
+	public AnimationCompositeSprite player_die_2;
 
 	public Sprite car1Sprite;
 	public Sprite car2Sprite;
@@ -75,6 +76,10 @@ public class Resources {
 	public Sprite static2Sprite;
 	public Sprite static3Sprite;
 	public Sprite static4Sprite;
+	public Sprite carlong1Sprite;
+	public Sprite carlong2Sprite;
+	public Sprite carlong3Sprite;
+	public Sprite carlong4Sprite;
 
 	public void getGameScreen(AssetManager manager1, AssetManager manager2) {
 		// ============sky=================
@@ -122,33 +127,40 @@ public class Resources {
 		player_run_scare = new AnimationCompositeSprite(
 				0.8f / player_run_scare_Frames.size, player_run_scare_Frames);
 		player_run_scare.setPlayMode(AnimationSprite.LOOP);
-		// // jump1
-		// Array<Sprite> player_jump_1_frames = player.createSprites("jump_1");
-		// player_jump_1 = new AnimationSprite((0.51f + 0.51f)
-		// / player_jump_1_frames.size, player_jump_1_frames);
-		// player_jump_1.setPlayMode(AnimationSprite.NORMAL);
-		// // sit
-		// Array<Sprite> player_sit_1_frames = player.createSprites("sit");
-		// player_sit = new AnimationSprite(1f / player_sit_1_frames.size,
-		// player_sit_1_frames);
-		// player_sit.setPlayMode(AnimationSprite.NORMAL);
-		// // die
-		// Array<Sprite> player_die_jump_frames =
-		// player.createSprites("die_jump");
-		// player_die_jump = new AnimationSprite(1f /
-		// player_die_jump_frames.size,
-		// player_die_jump_frames);
-		// player_die_jump.setPlayMode(AnimationSprite.NORMAL);
-		// // die run
-		// Array<Sprite> player_die_run_frames =
-		// player.createSprites("die_run");
-		// player_die_run = new AnimationSprite(1f / player_die_run_frames.size,
-		// player_die_run_frames);
-		// player_die_run.setPlayMode(AnimationSprite.NORMAL);
+		// jump1
+		Array<CompositeSprite> player_jump_1_frames = getArrayCompositeSprite(
+				11, "jump-1", "jump-1", playerAtlas);
+		player_jump_1 = new AnimationCompositeSprite(
+				1f / player_jump_1_frames.size, player_jump_1_frames);
+		player_jump_1.setPlayMode(AnimationCompositeSprite.NORMAL);
+		// jump2
+		Array<CompositeSprite> player_jump_2_frames = getArrayCompositeSprite(
+				15, "jump-2", "jump-2", playerAtlas);
+		player_jump_2 = new AnimationCompositeSprite(
+				1f / player_jump_2_frames.size, player_jump_2_frames);
+		player_jump_2.setPlayMode(AnimationCompositeSprite.NORMAL);
+		// sit
+		Array<CompositeSprite> player_sit_frames = getArrayCompositeSprite(13,
+				"down", "down", playerAtlas);
+		player_sit = new AnimationCompositeSprite(1f / player_sit_frames.size,
+				player_sit_frames);
+		player_sit.setPlayMode(AnimationCompositeSprite.NORMAL);
+		// die 1
+		Array<CompositeSprite> player_die_1_frames = getArrayCompositeSprite(
+				10, "die-1", "die-1", playerAtlas);
+		player_die_1 = new AnimationCompositeSprite(
+				1f / player_die_1_frames.size, player_die_1_frames);
+		player_die_1.setPlayMode(AnimationCompositeSprite.NORMAL);
+		// die 2
+		Array<CompositeSprite> player_die_2_frames = getArrayCompositeSprite(
+				11, "die-2", "die-2", playerAtlas);
+		player_die_2 = new AnimationCompositeSprite(
+				1f / player_die_2_frames.size, player_die_2_frames);
+		player_die_2.setPlayMode(AnimationCompositeSprite.NORMAL);
 
 		// static
 		TextureAtlas staticObjects = manager1
-				.get("staticobject/staticobject.atlas");
+				.get("staticobject/staticobjects.atlas");
 		car1Sprite = staticObjects.createSprite("o-to");
 		car2Sprite = staticObjects.createSprite("o-to-2");
 		box1Sprite = staticObjects.createSprite("box-1");
@@ -157,6 +169,10 @@ public class Resources {
 		static2Sprite = staticObjects.createSprite("vc-2");
 		static3Sprite = staticObjects.createSprite("vc-4");
 		static4Sprite = staticObjects.createSprite("vc-5");
+		carlong1Sprite = staticObjects.createSprite("car-1");
+		carlong2Sprite = staticObjects.createSprite("car-2");
+		carlong3Sprite = staticObjects.createSprite("car-3");
+		carlong4Sprite = staticObjects.createSprite("car-4");
 	}
 
 	public Array<CompositeSprite> getArrayCompositeSprite(int lengFrame,

@@ -19,6 +19,10 @@ public class StaticRenderer {
 	Sprite static2;
 	Sprite static3;
 	Sprite static4;
+	Sprite carlong1;
+	Sprite carlong2;
+	Sprite carlong3;
+	Sprite carlong4;
 
 	public StaticRenderer(World world) {
 		this.world = world;
@@ -33,6 +37,10 @@ public class StaticRenderer {
 		static2 = Resources.getInstance().static2Sprite;
 		static3 = Resources.getInstance().static3Sprite;
 		static4 = Resources.getInstance().static4Sprite;
+		carlong1 = Resources.getInstance().carlong1Sprite;
+		carlong2 = Resources.getInstance().carlong2Sprite;
+		carlong3 = Resources.getInstance().carlong3Sprite;
+		carlong4 = Resources.getInstance().carlong4Sprite;
 	}
 
 	public void render(SpriteBatch batch, float delta) {
@@ -49,7 +57,7 @@ public class StaticRenderer {
 				car2.draw(batch);
 				break;
 			case "box1":
-				box1.setPosition(impedimentar.getPosition().x-30,
+				box1.setPosition(impedimentar.getPosition().x - 30,
 						impedimentar.getPosition().y);
 				box1.draw(batch);
 				break;
@@ -77,6 +85,26 @@ public class StaticRenderer {
 				static4.setPosition(impedimentar.getPosition().x - 5,
 						impedimentar.getPosition().y);
 				static4.draw(batch);
+				break;
+			case "carlong1":
+				carlong1.setPosition(impedimentar.getPosition().x - 5,
+						impedimentar.getPosition().y);
+				carlong1.draw(batch);
+				break;
+			case "carlong2":
+				carlong2.setPosition(impedimentar.getPosition().x - 5,
+						impedimentar.getPosition().y);
+				carlong2.draw(batch);
+				break;
+			case "carlong3":
+				carlong3.setPosition(impedimentar.getPosition().x - 5,
+						impedimentar.getPosition().y);
+				carlong3.draw(batch);
+				break;
+			case "carlong4":
+				carlong4.setPosition(impedimentar.getPosition().x - 5,
+						impedimentar.getPosition().y);
+				carlong4.draw(batch);
 				break;
 
 			default:

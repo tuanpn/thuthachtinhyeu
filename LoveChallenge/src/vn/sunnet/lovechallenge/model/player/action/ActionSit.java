@@ -22,19 +22,33 @@ public class ActionSit implements PlayerActionState {
 
 	@Override
 	public void collistionImpedimet(float delta) {
-		// TODO Auto-generated method stub
+		switch (player.getColistionState()) {
+		case 0:
 
+			break;
+		case 1:
+			player.setActionState(player.getStopState());
+			break;
+		case 2:
+
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override
 	public void idleRun(float delta) {
 		player.setStateTimeSit(player.getStateTimeSit() + delta);
 		if (player.getStateTimeSit() > player.TIME_SIT) {
-			player.setStateTimeSit(0);
-			player.getBounds().width = player.WIDTH_RUN;
-			player.getBounds().height = player.HEIGHT_RUN;
-			player.setActionState(player.getRunState());
+			player.initStateRun();
 		}
+	}
+
+	@Override
+	public int getID() {
+		return 2;
 	}
 
 }

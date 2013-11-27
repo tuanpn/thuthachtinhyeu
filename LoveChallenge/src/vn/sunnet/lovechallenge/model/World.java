@@ -4,6 +4,7 @@ import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.staticobjects.Box1;
 import vn.sunnet.lovechallenge.model.staticobjects.Box2;
 import vn.sunnet.lovechallenge.model.staticobjects.Car;
+import vn.sunnet.lovechallenge.model.staticobjects.CarLong;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
 import vn.sunnet.lovechallenge.model.staticobjects.Static1;
 import vn.sunnet.lovechallenge.model.staticobjects.Static2;
@@ -59,34 +60,43 @@ public class World {
 		if (stateTimeObject > timeCreate) {
 			stateTimeObject = 0;
 			timeCreate = MathUtils.random(3.f, 5.f);
-			switch (MathUtils.random(0, 6)) {
+			switch (MathUtils.random(7, 7)) {
 			case 0:
-				staticObjects.add(new Car(new Vector2(
-						player.getPosition().x + 1024, 20)));
+				staticObjects.add(new Car(new Vector2(player.getPosition().x
+						+ MathUtils.random(900, 1200), 10)));
 				break;
 			case 1:
-				staticObjects.add(new Box1(new Vector2(
-						player.getPosition().x + 1024, 20)));
+				staticObjects.add(new Box1(new Vector2(player.getPosition().x
+						+ MathUtils.random(900, 1200), 10)));
 				break;
 			case 2:
-				staticObjects.add(new Box2(new Vector2(
-						player.getPosition().x + 1024, 20)));
+				staticObjects.add(new Box2(new Vector2(player.getPosition().x
+						+ MathUtils.random(900, 1200), 20)));
 				break;
 			case 3:
-				staticObjects.add(new Static1(new Vector2(
-						player.getPosition().x + 1024, 20)));
+				staticObjects.add(new Static1(
+						new Vector2(player.getPosition().x
+								+ MathUtils.random(900, 1200), 5)));
 				break;
 			case 4:
 				staticObjects.add(new Static2(new Vector2(
-						player.getPosition().x + 1024, 20)));
+						player.getPosition().x + MathUtils.random(900, 1200),
+						20)));
 				break;
 			case 5:
 				staticObjects.add(new Static3(new Vector2(
-						player.getPosition().x + 1024, 20)));
+						player.getPosition().x + MathUtils.random(900, 1200),
+						20)));
 				break;
 			case 6:
 				staticObjects.add(new Static4(new Vector2(
-						player.getPosition().x + 1024, 20)));
+						player.getPosition().x + MathUtils.random(900, 1200),
+						20)));
+				break;
+			case 7:
+				staticObjects.add(new CarLong(new Vector2(
+						player.getPosition().x + MathUtils.random(1200, 1500),
+						10)));
 				break;
 
 			default:
@@ -102,7 +112,7 @@ public class World {
 				break;
 			}
 		}
-
+		
 	}
 
 }

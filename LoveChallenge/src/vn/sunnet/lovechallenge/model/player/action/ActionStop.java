@@ -28,19 +28,17 @@ public class ActionStop implements PlayerActionState {
 
 	@Override
 	public void idleRun(float delta) {
-		player.setTimeDie(player.getTimeDie() + delta);
-		if (player.getTimeDie() > 2f) {
-			player.setTimeDie(0);
-			player.setColistionState(0);
-			player.setStateTimeJump1(0);
-			player.setActionState(player.getRunState());
-			player.getAccelation().y = 0;
-			player.getVeloctity().y = 0;
-			player.getPosition().y = player.POSITION_INIT_Y;
-			player.setStopUpdate(false);
+		player.setStateTimeDie(player.getStateTimeDie() + delta);
+		if (player.getStateTimeDie() > 2f) {
+			player.resetAll();
 		} 
-		if(player.getTimeDie() > 1f) {
+		if(player.getStateTimeDie() > 1f) {
 			player.setStopUpdate(true);
 		}
+	}
+
+	@Override
+	public int getID() {
+		return 3;
 	}
 }

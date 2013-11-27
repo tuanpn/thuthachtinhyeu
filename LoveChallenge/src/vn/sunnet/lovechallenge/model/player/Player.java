@@ -3,7 +3,8 @@ package vn.sunnet.lovechallenge.model.player;
 import vn.sunnet.lovechallenge.controller.LoadMap;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump1;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump2;
-import vn.sunnet.lovechallenge.model.player.action.ActionRun;
+import vn.sunnet.lovechallenge.model.player.action.ActionRunCar;
+import vn.sunnet.lovechallenge.model.player.action.ActionRunRoad;
 import vn.sunnet.lovechallenge.model.player.action.ActionSit;
 import vn.sunnet.lovechallenge.model.player.action.ActionStop;
 import vn.sunnet.lovechallenge.model.player.action.PlayerActionState;
@@ -57,6 +58,7 @@ public class Player {
 	private PlayerState state;
 
 	private PlayerActionState runState;
+	private PlayerActionState runOnCarState;
 	private PlayerActionState jumpState1;
 	private PlayerActionState jumpState2;
 	private PlayerActionState sitState;
@@ -64,6 +66,8 @@ public class Player {
 	private float stateTimeSit;
 	private float stateTimeRun;
 	private float stateTimeJump1;
+	private float stateTimeDie;
+	private float stateTimeRunCar;
 
 	private PlayerActionState actionState;
 
@@ -76,8 +80,6 @@ public class Player {
 	private boolean flingDown;
 
 	private int colistionState;
-
-	private float timeDie;
 
 	/*
 	 * dừng hình,không cập nhật chạy
@@ -101,20 +103,22 @@ public class Player {
 
 		state = funnyState;
 
-		setRunState(new ActionRun(this));
+		setRunState(new ActionRunRoad(this));
+		setRunOnCarState(new ActionRunCar(this));
 		setJumpState1(new ActionJump1(this));
 		setJumpState2(new ActionJump2(this));
 		setSitState(new ActionSit(this));
 		setStopState(new ActionStop(this));
 
 		actionState = runState;
-		
+
 		stateTimeSit = 0;
 		stateTimeRun = 0;
 		stateTimeJump1 = 0;
+		setStateTimeRunCar(0);
 		flingUp = false;
 		flingDown = false;
-		timeDie = 0;
+		stateTimeDie = 0;
 		stopUpdate = false;
 	}
 
@@ -246,12 +250,12 @@ public class Player {
 		this.jumpState2 = jumpState2;
 	}
 
-	public float getTimeDie() {
-		return timeDie;
+	public float getStateTimeDie() {
+		return stateTimeDie;
 	}
 
-	public void setTimeDie(float timeDie) {
-		this.timeDie = timeDie;
+	public void setStateTimeDie(float stateTimeDie) {
+		this.stateTimeDie = stateTimeDie;
 	}
 
 	public PlayerActionState getStopState() {
@@ -260,6 +264,14 @@ public class Player {
 
 	public void setStopState(PlayerActionState stopState) {
 		this.stopState = stopState;
+	}
+
+	public PlayerActionState getRunOnCarState() {
+		return runOnCarState;
+	}
+
+	public void setRunOnCarState(PlayerActionState runOnCarState) {
+		this.runOnCarState = runOnCarState;
 	}
 
 	public boolean isFlingDown() {
@@ -302,6 +314,14 @@ public class Player {
 		this.stateTimeJump1 = stateTimeJump1;
 	}
 
+	public float getStateTimeRunCar() {
+		return stateTimeRunCar;
+	}
+
+	public void setStateTimeRunCar(float stateTimeRunCar) {
+		this.stateTimeRunCar = stateTimeRunCar;
+	}
+
 	public int getPercentageStateBar() {
 		return percentageStateBar;
 	}
@@ -317,8 +337,9 @@ public class Player {
 	/**
 	 * 
 	 * @param colistionState
-	 *            0 : không có va chạm 1 : va chạm với static 2 : va chạm với
-	 *            dynamic
+	 *            0 : không có va chạm; 1 : va chạm với static bình thường; 2 :
+	 *            va chạm với car long
+	 * 
 	 */
 	public void setColistionState(int colistionState) {
 		this.colistionState = colistionState;
@@ -333,26 +354,70 @@ public class Player {
 	}
 
 	public void update(float delta) {
-		if (actionState instanceof ActionRun) {
+		switch (actionState.getID()) {
+		case 0:
 			stateTimeRun += delta;
+			break;
+		case 1:
+			stateTimeJump1 += delta;
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			stateTimeRunCar += delta;
+			break;
+
+		default:
+			break;
 		}
 
 		// position
 		veloctity.add(accelation.x * delta, accelation.y * delta);
 		position.add(veloctity.x * delta, veloctity.y * delta);
 
-		if (actionState instanceof ActionJump1) {
-			bounds.x = position.x + 50;
-			bounds.y = position.y + 70;
-		} else {
-			bounds.x = position.x + 50;
+		switch (actionState.getID()) {
+		case 0:
+			bounds.x = position.x + 40;
 			bounds.y = position.y;
+			break;
+		case 1:
+			bounds.x = position.x + 40;
+			bounds.y = position.y + 60;
+			break;
+		case 2:
+			bounds.x = position.x + 20;
+			bounds.y = position.y;
+			break;
+		case 4:
+			bounds.x = position.x + 40;
+			bounds.y = position.y;
+			break;
+
+		default:
+			break;
 		}
 
 	}
 
-	public void reset() {
-		
+	public void resetAll() {
+		initStateRun();
+		setStateTimeDie(0);
+		setStateTimeJump1(0);
+		setStateTimeRunCar(0);
+	}
+
+	public void initStateRun() {
+		setColistionState(0);
+		setStateTimeRun(0);
+		setActionState(runState);
+		getBounds().width = WIDTH_RUN;
+		getBounds().height = HEIGHT_RUN;
+		getAccelation().y = 0;
+		getVeloctity().y = 0;
+		getPosition().y = POSITION_INIT_Y;
+		setStopUpdate(false);
 	}
 
 }

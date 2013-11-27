@@ -5,7 +5,7 @@ import vn.sunnet.lovechallenge.controller.LoadMap;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * hình cống
+ * hình hốc cống
  * 
  * @author PhamNgoc
  * 

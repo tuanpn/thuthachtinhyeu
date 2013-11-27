@@ -4,7 +4,7 @@ import vn.sunnet.lovechallenge.Resources2;
 import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump1;
-import vn.sunnet.lovechallenge.model.player.action.ActionRun;
+import vn.sunnet.lovechallenge.model.player.action.ActionRunRoad;
 import vn.sunnet.lovechallenge.model.player.action.ActionSit;
 import vn.sunnet.lovechallenge.model.player.action.ActionStop;
 import vn.sunnet.lovechallenge.utils.AnimationSprite;
@@ -41,7 +41,7 @@ public class PlayerRenderer2 {
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		if (player.getActionState() instanceof ActionRun) {
+		if (player.getActionState() instanceof ActionRunRoad) {
 			run_body.getKeyFrame(player.getStateTimeRun(), true).draw(batch);
 		} else if (player.getActionState() instanceof ActionJump1) {
 			jump1.setPosition(player.getPosition().x, player.getPosition().y);
@@ -49,7 +49,7 @@ public class PlayerRenderer2 {
 		} else if (player.getActionState() instanceof ActionSit) {
 			sit.getKeyFrame(player.getStateTimeSit(), false).draw(batch);
 		} else if (player.getActionState() instanceof ActionStop) {
-			diejump.getKeyFrame(player.getTimeDie(), false).draw(batch);
+			diejump.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
 		}
 
 	}

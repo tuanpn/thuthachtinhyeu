@@ -5,6 +5,8 @@ import java.util.Map;
 
 import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.player.Player;
+import vn.sunnet.lovechallenge.model.staticobjects.CarLong;
+import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
 
 public class PlayerController {
 
@@ -45,12 +47,22 @@ public class PlayerController {
 	public void update(float delta) {
 		processInput(delta);
 
+		for (Impediment impediment : world.getStaticObjects()) {
+			if (impediment instanceof CarLong) {
+				if (impediment.getBounds().width + impediment.getBounds().x < player
+						.getBounds().x && ((CarLong) impediment).isPlayerRun()) {
+					((CarLong) impediment).setPlayerRun(false);
+					player.setFlingUp(true);
+				}
+			}
+		}
+
 		// player action
 		player.flingup();
 		player.flingdown();
 		player.collistionImpedimet(delta);
 		player.idleRun(delta);
-
+	
 	}
 
 	private void processInput(float delta) {

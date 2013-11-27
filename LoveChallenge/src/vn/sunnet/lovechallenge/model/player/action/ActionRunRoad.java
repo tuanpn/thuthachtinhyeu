@@ -2,11 +2,11 @@ package vn.sunnet.lovechallenge.model.player.action;
 
 import vn.sunnet.lovechallenge.model.player.Player;
 
-public class ActionRun implements PlayerActionState {
+public class ActionRunRoad implements PlayerActionState {
 
 	Player player;
 
-	public ActionRun(Player player) {
+	public ActionRunRoad(Player player) {
 		this.player = player;
 	}
 
@@ -53,6 +53,11 @@ public class ActionRun implements PlayerActionState {
 	@Override
 	public void idleRun(float delta) {
 
+	}
+
+	@Override
+	public int getID() {
+		return 0;
 	}
 
 }
