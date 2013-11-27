@@ -6,19 +6,19 @@
     y="35" >
 
     <run
-        height="140"
-        width="40" >
+        height="100"
+        width="30" >
     </run>
 
     <sit
         height="40"
         time="1"
-        width="100" >
+        width="50" >
     </sit>
 
     <jump
-        height="80"
-        width="50" >
+        height="50"
+        width="40" >
     </jump>
 
 </player>

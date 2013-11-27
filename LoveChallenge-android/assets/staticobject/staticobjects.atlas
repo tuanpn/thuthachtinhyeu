@@ -1,60 +1,88 @@
 
-staticobject.png
+staticobjects.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 box-1
   rotate: false
-  xy: 2, 157
+  xy: 1, 685
   size: 455, 314
   orig: 455, 314
   offset: 0, 0
   index: -1
 box-2
   rotate: false
-  xy: 459, 170
+  xy: 1, 382
   size: 308, 301
   orig: 308, 301
   offset: 0, 0
   index: -1
-o-to
+car-2
   rotate: false
-  xy: 295, 4
-  size: 284, 151
-  orig: 284, 151
+  xy: 458, 837
+  size: 437, 162
+  orig: 437, 162
   offset: 0, 0
   index: -1
-o-to-2
+car-1
   rotate: false
-  xy: 2, 2
-  size: 291, 153
-  orig: 291, 153
+  xy: 458, 673
+  size: 436, 162
+  orig: 436, 162
+  offset: 0, 0
+  index: -1
+car-3
+  rotate: false
+  xy: 1, 217
+  size: 436, 163
+  orig: 436, 163
+  offset: 0, 0
+  index: -1
+car-4
+  rotate: false
+  xy: 1, 52
+  size: 436, 163
+  orig: 436, 163
   offset: 0, 0
   index: -1
 vc-1
   rotate: false
-  xy: 581, 119
+  xy: 1, 1
   size: 271, 49
   orig: 271, 49
   offset: 0, 0
   index: -1
+o-to-2
+  rotate: false
+  xy: 311, 518
+  size: 291, 153
+  orig: 291, 153
+  offset: 0, 0
+  index: -1
+o-to
+  rotate: false
+  xy: 604, 520
+  size: 284, 151
+  orig: 284, 151
+  offset: 0, 0
+  index: -1
 vc-2
   rotate: false
-  xy: 769, 362
+  xy: 311, 407
   size: 238, 109
   orig: 238, 109
   offset: 0, 0
   index: -1
 vc-4
   rotate: false
-  xy: 769, 297
+  xy: 897, 936
   size: 105, 63
   orig: 105, 63
   offset: 0, 0
   index: -1
 vc-5
   rotate: false
-  xy: 581, 56
+  xy: 897, 873
   size: 80, 61
   orig: 80, 61
   offset: 0, 0
