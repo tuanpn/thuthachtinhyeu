@@ -87,22 +87,22 @@ public class StaticRenderer {
 				static4.draw(batch);
 				break;
 			case "carlong1":
-				carlong1.setPosition(impedimentar.getPosition().x - 5,
+				carlong1.setPosition(impedimentar.getPosition().x - 20,
 						impedimentar.getPosition().y);
 				carlong1.draw(batch);
 				break;
 			case "carlong2":
-				carlong2.setPosition(impedimentar.getPosition().x - 5,
+				carlong2.setPosition(impedimentar.getPosition().x - 20,
 						impedimentar.getPosition().y);
 				carlong2.draw(batch);
 				break;
 			case "carlong3":
-				carlong3.setPosition(impedimentar.getPosition().x - 5,
+				carlong3.setPosition(impedimentar.getPosition().x - 20,
 						impedimentar.getPosition().y);
 				carlong3.draw(batch);
 				break;
 			case "carlong4":
-				carlong4.setPosition(impedimentar.getPosition().x - 5,
+				carlong4.setPosition(impedimentar.getPosition().x - 20,
 						impedimentar.getPosition().y);
 				carlong4.draw(batch);
 				break;

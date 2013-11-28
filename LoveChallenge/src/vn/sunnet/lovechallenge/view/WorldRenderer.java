@@ -49,8 +49,8 @@ public class WorldRenderer {
 		playerRenderer.render(batcher, delta);
 		batcher.end();
 
-		if (debug)
-			drawDebug();
+//		if (debug)
+//			drawDebug();
 	}
 
 	ShapeRenderer renderer = new ShapeRenderer();

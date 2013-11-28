@@ -78,6 +78,7 @@ public class Player {
 
 	private boolean flingUp;
 	private boolean flingDown;
+	private boolean flingAuto;
 
 	private int colistionState;
 
@@ -353,6 +354,14 @@ public class Player {
 		this.stopUpdate = stopUpdate;
 	}
 
+	public boolean isFlingAuto() {
+		return flingAuto;
+	}
+
+	public void setFlingAuto(boolean flingAuto) {
+		this.flingAuto = flingAuto;
+	}
+
 	public void update(float delta) {
 		switch (actionState.getID()) {
 		case 0:
@@ -362,6 +371,7 @@ public class Player {
 			stateTimeJump1 += delta;
 			break;
 		case 2:
+			stateTimeSit += delta;
 			break;
 		case 3:
 			break;
@@ -406,6 +416,8 @@ public class Player {
 		setStateTimeDie(0);
 		setStateTimeJump1(0);
 		setStateTimeRunCar(0);
+		setFlingAuto(false);
+		setStateTimeSit(0);
 	}
 
 	public void initStateRun() {

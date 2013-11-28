@@ -19,17 +19,17 @@ public class ActionRunRoad implements PlayerActionState {
 			player.getBounds().width = player.WIDTH_JUMP;
 			player.getBounds().height = player.HEIGHT_JUMP;
 			player.setFlingUp(false);
-		} else if (player.isFlingDown()) {
-			player.getBounds().width = player.WIDTH_SIT;
-			player.getBounds().height = player.HEIGHT_SIT;
-			player.setActionState(player.getSitState());
-			player.setFlingDown(false);
 		}
 	}
 
 	@Override
 	public void flingdown() {
-
+		if (player.isFlingDown()) {
+			player.getBounds().width = player.WIDTH_SIT;
+			player.getBounds().height = player.HEIGHT_SIT;
+			player.setActionState(player.getSitState());
+			player.setFlingDown(false);
+		}
 	}
 
 	@Override

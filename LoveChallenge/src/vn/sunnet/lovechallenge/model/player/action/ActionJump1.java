@@ -19,7 +19,7 @@ public class ActionJump1 implements PlayerActionState {
 		// player.setActionState(player.getJumpState2());
 		// }
 		player.setFlingUp(false);
-
+		
 	}
 
 	@Override

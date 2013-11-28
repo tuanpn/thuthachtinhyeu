@@ -49,10 +49,12 @@ public class PlayerController {
 
 		for (Impediment impediment : world.getStaticObjects()) {
 			if (impediment instanceof CarLong) {
-				if (impediment.getBounds().width + impediment.getBounds().x < player
-						.getBounds().x && ((CarLong) impediment).isPlayerRun()) {
+				if ((impediment.getBounds().width + impediment.getBounds().x < player
+						.getBounds().x + player.getBounds().width)
+						&& ((CarLong) impediment).isPlayerRun()) {
 					((CarLong) impediment).setPlayerRun(false);
-					player.setFlingUp(true);
+					player.setFlingAuto(true);
+//					System.out.println("FlingAuto");
 				}
 			}
 		}
@@ -62,7 +64,7 @@ public class PlayerController {
 		player.flingdown();
 		player.collistionImpedimet(delta);
 		player.idleRun(delta);
-	
+
 	}
 
 	private void processInput(float delta) {

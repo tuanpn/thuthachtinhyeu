@@ -40,9 +40,8 @@ public class ActionSit implements PlayerActionState {
 
 	@Override
 	public void idleRun(float delta) {
-		player.setStateTimeSit(player.getStateTimeSit() + delta);
 		if (player.getStateTimeSit() > player.TIME_SIT) {
-			player.initStateRun();
+			player.resetAll();
 		}
 	}
 

@@ -38,8 +38,6 @@ public class PlayerRenderer {
 		jump1 = Resources.getInstance().player_jump_1;
 		jump2 = Resources.getInstance().player_jump_2;
 		sit = Resources.getInstance().player_sit;
-		sit.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
-				.getPosition().y);
 
 		die1 = Resources.getInstance().player_die_1;
 		die1.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
@@ -53,8 +51,7 @@ public class PlayerRenderer {
 
 		switch (player.getActionState().getID()) {
 		case 0:
-			runNomal.setPosition(world.getPlayer().getPosition().x, world
-					.getPlayer().getPosition().y);
+			runNomal.setPosition(player.getPosition().x, player.getPosition().y);
 			runNomal.getKeyFrame(player.getStateTimeRun(), true).draw(batch);
 			break;
 		case 1:
@@ -62,14 +59,14 @@ public class PlayerRenderer {
 			jump1.getKeyFrame(player.getStateTimeJump1(), false).draw(batch);
 			break;
 		case 2:
+			sit.setPosition(player.getPosition().x, player.getPosition().y);
 			sit.getKeyFrame(player.getStateTimeSit(), true).draw(batch);
 			break;
 		case 3:
 			die1.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
 			break;
 		case 4:
-			runNomal.setPosition(world.getPlayer().getPosition().x, world
-					.getPlayer().getPosition().y);
+			runNomal.setPosition(player.getPosition().x, player.getPosition().y);
 			runNomal.getKeyFrame(player.getStateTimeRunCar(), false)
 					.draw(batch);
 			break;

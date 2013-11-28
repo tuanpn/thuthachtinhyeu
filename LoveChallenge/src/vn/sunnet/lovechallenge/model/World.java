@@ -31,7 +31,7 @@ public class World {
 	}
 
 	private float stateTimeObject;
-	private float timeCreate = 3;
+	private float timeCreate = 2;
 
 	public Player getPlayer() {
 		return player;
@@ -60,42 +60,42 @@ public class World {
 		if (stateTimeObject > timeCreate) {
 			stateTimeObject = 0;
 			timeCreate = MathUtils.random(3.f, 5.f);
-			switch (MathUtils.random(7, 7)) {
+			switch (MathUtils.random(0, 7)) {
 			case 0:
 				staticObjects.add(new Car(new Vector2(player.getPosition().x
-						+ MathUtils.random(900, 1200), 10)));
+						+ MathUtils.random(1000, 1200), 10)));
 				break;
 			case 1:
 				staticObjects.add(new Box1(new Vector2(player.getPosition().x
-						+ MathUtils.random(900, 1200), 10)));
+						+ MathUtils.random(1000, 1200), 10)));
 				break;
 			case 2:
 				staticObjects.add(new Box2(new Vector2(player.getPosition().x
-						+ MathUtils.random(900, 1200), 20)));
+						+ MathUtils.random(1000, 1200), 20)));
 				break;
 			case 3:
 				staticObjects.add(new Static1(
 						new Vector2(player.getPosition().x
-								+ MathUtils.random(900, 1200), 5)));
+								+ MathUtils.random(1000, 1200), 5)));
 				break;
 			case 4:
 				staticObjects.add(new Static2(new Vector2(
-						player.getPosition().x + MathUtils.random(900, 1200),
+						player.getPosition().x + MathUtils.random(1000, 1200),
 						20)));
 				break;
 			case 5:
 				staticObjects.add(new Static3(new Vector2(
-						player.getPosition().x + MathUtils.random(900, 1200),
+						player.getPosition().x + MathUtils.random(1000, 1200),
 						20)));
 				break;
 			case 6:
 				staticObjects.add(new Static4(new Vector2(
-						player.getPosition().x + MathUtils.random(900, 1200),
+						player.getPosition().x + MathUtils.random(1000, 1200),
 						20)));
 				break;
 			case 7:
 				staticObjects.add(new CarLong(new Vector2(
-						player.getPosition().x + MathUtils.random(1200, 1500),
+						player.getPosition().x + MathUtils.random(1100, 1200),
 						10)));
 				break;
 
@@ -112,7 +112,12 @@ public class World {
 				break;
 			}
 		}
-		
+//		System.out.println("World : " + player.getActionState());
+	}
+	
+	public void reset() {
+		player.resetAll();
+		staticObjects.clear();
 	}
 
 }

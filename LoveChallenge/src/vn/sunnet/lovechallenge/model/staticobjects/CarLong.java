@@ -12,7 +12,7 @@ public class CarLong extends Impediment {
 	public static final int VELOCITY_X = LoadMap.player_velocity_x;
 
 	// kiem tra player co dc run hay ko
-	private boolean playerRun = true;
+	private boolean playerRun;
 
 	public CarLong() {
 		this(new Vector2());
