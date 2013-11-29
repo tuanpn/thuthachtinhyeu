@@ -2,7 +2,7 @@ package vn.sunnet.lovechallenge.model.player;
 
 import vn.sunnet.lovechallenge.controller.LoadMap;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump1;
-import vn.sunnet.lovechallenge.model.player.action.ActionJump2;
+import vn.sunnet.lovechallenge.model.player.action.ActionJumpOnCar;
 import vn.sunnet.lovechallenge.model.player.action.ActionRunCar;
 import vn.sunnet.lovechallenge.model.player.action.ActionRunRoad;
 import vn.sunnet.lovechallenge.model.player.action.ActionSit;
@@ -60,7 +60,7 @@ public class Player {
 	private PlayerActionState runState;
 	private PlayerActionState runOnCarState;
 	private PlayerActionState jumpState1;
-	private PlayerActionState jumpState2;
+	private PlayerActionState jumpOnCarState;
 	private PlayerActionState sitState;
 	private PlayerActionState stopState;
 	private float stateTimeSit;
@@ -107,7 +107,7 @@ public class Player {
 		setRunState(new ActionRunRoad(this));
 		setRunOnCarState(new ActionRunCar(this));
 		setJumpState1(new ActionJump1(this));
-		setJumpState2(new ActionJump2(this));
+		setJumpState2(new ActionJumpOnCar(this));
 		setSitState(new ActionSit(this));
 		setStopState(new ActionStop(this));
 
@@ -131,28 +131,20 @@ public class Player {
 		this.actionState.flingdown();
 	}
 
-	public void collistionImpedimet(float delta) {
-		this.actionState.collistionImpedimet(delta);
+	public void collistionImpedimet() {
+		this.actionState.collistionImpedimet();
 	}
 
-	public void idleRun(float delta) {
-		this.actionState.idleRun(delta);
+	public void backRun() {
+		this.actionState.backRun();
 	}
 
-	public void collistionImpediment(int type) {
-		this.state.collistionImpediment(type);
+	public void jumpHighOnCar() {
+		this.actionState.jumpHighOnCar();
 	}
 
-	public void increaseStateBar90() {
-		this.state.increaseStateBar90();
-	}
-
-	public void increaseStateBar80() {
-		this.state.increaseStateBar80();
-	}
-
-	public void increaseStateBar70() {
-		this.state.increaseStateBar70();
+	public void jumpAutoCarToRoad() {
+		this.actionState.jumpAutoCarToRoad();
 	}
 
 	public int getId() {
@@ -244,11 +236,11 @@ public class Player {
 	}
 
 	public PlayerActionState getJumpState2() {
-		return jumpState2;
+		return jumpOnCarState;
 	}
 
-	public void setJumpState2(PlayerActionState jumpState2) {
-		this.jumpState2 = jumpState2;
+	public void setJumpState2(PlayerActionState jumpOnCarState) {
+		this.jumpOnCarState = jumpOnCarState;
 	}
 
 	public float getStateTimeDie() {
@@ -374,6 +366,7 @@ public class Player {
 			stateTimeSit += delta;
 			break;
 		case 3:
+			stateTimeDie += delta;
 			break;
 		case 4:
 			stateTimeRunCar += delta;
@@ -408,7 +401,7 @@ public class Player {
 		default:
 			break;
 		}
-
+	
 	}
 
 	public void resetAll() {

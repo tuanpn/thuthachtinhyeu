@@ -2,11 +2,11 @@ package vn.sunnet.lovechallenge.model.player.action;
 
 import vn.sunnet.lovechallenge.model.player.Player;
 
-public class ActionJump2 implements PlayerActionState {
+public class ActionJumpOnCar implements PlayerActionState {
 
 	Player player;
 
-	public ActionJump2(Player player) {
+	public ActionJumpOnCar(Player player) {
 		this.player = player;
 	}
 
@@ -22,13 +22,13 @@ public class ActionJump2 implements PlayerActionState {
 	}
 
 	@Override
-	public void collistionImpedimet(float delta) {
+	public void collistionImpedimet() {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void idleRun(float delta) {
+	public void backRun() {
 		if (player.getPosition().y < player.POSITION_INIT_Y
 				&& player.getVeloctity().y < 0) {
 			player.getAccelation().y = 0;
@@ -41,6 +41,18 @@ public class ActionJump2 implements PlayerActionState {
 	@Override
 	public int getID() {
 		return 4;
+	}
+
+	@Override
+	public void jumpHighOnCar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void jumpAutoCarToRoad() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

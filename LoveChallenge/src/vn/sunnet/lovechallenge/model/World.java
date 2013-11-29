@@ -48,8 +48,7 @@ public class World {
 	}
 
 	public void update(float delta) {
-		player.update(delta);
-
+		
 		createObject(delta);
 	}
 

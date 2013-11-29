@@ -21,7 +21,7 @@ public class ActionSit implements PlayerActionState {
 	}
 
 	@Override
-	public void collistionImpedimet(float delta) {
+	public void collistionImpedimet() {
 		switch (player.getColistionState()) {
 		case 0:
 
@@ -39,7 +39,7 @@ public class ActionSit implements PlayerActionState {
 	}
 
 	@Override
-	public void idleRun(float delta) {
+	public void backRun() {
 		if (player.getStateTimeSit() > player.TIME_SIT) {
 			player.resetAll();
 		}
@@ -48,6 +48,18 @@ public class ActionSit implements PlayerActionState {
 	@Override
 	public int getID() {
 		return 2;
+	}
+
+	@Override
+	public void jumpHighOnCar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void jumpAutoCarToRoad() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

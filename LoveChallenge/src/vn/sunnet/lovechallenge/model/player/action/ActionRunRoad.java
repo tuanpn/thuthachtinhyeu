@@ -33,7 +33,7 @@ public class ActionRunRoad implements PlayerActionState {
 	}
 
 	@Override
-	public void collistionImpedimet(float delta) {
+	public void collistionImpedimet() {
 		switch (player.getColistionState()) {
 		case 0:
 
@@ -51,13 +51,26 @@ public class ActionRunRoad implements PlayerActionState {
 	}
 
 	@Override
-	public void idleRun(float delta) {
+	public void backRun() {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public int getID() {
 		return 0;
+	}
+
+	@Override
+	public void jumpHighOnCar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void jumpAutoCarToRoad() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

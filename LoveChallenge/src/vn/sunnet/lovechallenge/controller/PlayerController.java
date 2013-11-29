@@ -54,7 +54,7 @@ public class PlayerController {
 						&& ((CarLong) impediment).isPlayerRun()) {
 					((CarLong) impediment).setPlayerRun(false);
 					player.setFlingAuto(true);
-//					System.out.println("FlingAuto");
+					// System.out.println("FlingAuto");
 				}
 			}
 		}
@@ -62,9 +62,12 @@ public class PlayerController {
 		// player action
 		player.flingup();
 		player.flingdown();
-		player.collistionImpedimet(delta);
-		player.idleRun(delta);
-
+		player.collistionImpedimet();
+		player.backRun();
+		player.jumpHighOnCar();
+		player.jumpAutoCarToRoad();
+	
+		player.update(delta);
 	}
 
 	private void processInput(float delta) {
