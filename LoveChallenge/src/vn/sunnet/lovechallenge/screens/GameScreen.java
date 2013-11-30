@@ -3,10 +3,11 @@ package vn.sunnet.lovechallenge.screens;
 import vn.sunnet.lovechallenge.MainGame;
 import vn.sunnet.lovechallenge.controller.LoadMap;
 import vn.sunnet.lovechallenge.controller.WorldController;
-import vn.sunnet.lovechallenge.model.World;
+import vn.sunnet.lovechallenge.model.world.World;
 import vn.sunnet.lovechallenge.view.WorldRenderer;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector;
@@ -28,6 +29,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
 		InputMultiplexer input = new InputMultiplexer();
 		input.addProcessor(this);
 		input.addProcessor(gestureDetector);
+
 		Gdx.input.setInputProcessor(input);
 	}
 
@@ -74,6 +76,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
 		// controller.getPlayerController().runReleased();
 		// else
 		// controller.getPlayerController().stopReleased();
+		if (keycode == Keys.BACK) {
+			Gdx.app.exit();
+		}
 		return false;
 	}
 

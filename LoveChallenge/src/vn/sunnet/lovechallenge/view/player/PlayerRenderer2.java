@@ -1,12 +1,12 @@
 package vn.sunnet.lovechallenge.view.player;
 
 import vn.sunnet.lovechallenge.Resources2;
-import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.player.action.ActionJump1;
 import vn.sunnet.lovechallenge.model.player.action.ActionRunRoad;
 import vn.sunnet.lovechallenge.model.player.action.ActionSit;
 import vn.sunnet.lovechallenge.model.player.action.ActionStop;
+import vn.sunnet.lovechallenge.model.world.World;
 import vn.sunnet.lovechallenge.utils.AnimationSprite;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

@@ -2,13 +2,13 @@ package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
 import vn.sunnet.lovechallenge.controller.LoadMap;
-import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.bg.Background;
+import vn.sunnet.lovechallenge.model.world.World;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 
 public class HouseRenderer {
 
@@ -108,32 +108,57 @@ public class HouseRenderer {
 		wall61.setPosition(house36.getX() - wall61.getWidth() + 10,
 				wall11.getY());
 
-		house1Bg = new Background(4);
-		house1Bg.setVelocity(new Vector2(-200,0));
+		house1Bg = new Background(0, 200, 0, -200, 0);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		if(house1Bg.getPosition().x < -house11.getWidth()) {
-			house1Bg.getPosition().x += 1000;
-		}
-		house1Bg.update(delta);
-		batch.draw(house1, house1Bg.getPosition().x, house1Bg.getPosition().y);
-		// // kiểu nhà 3
-		// renderHouse3(batch, delta);
-		// // wall
-		// renderWall(batch, delta);
-		// // kieu nha 1
-		// renderHouse1(batch, delta);
-		// // kieu nha 2
-		// renderHouse2(batch, delta);
-		// // kieu nha 4
-		// renderHouse4(batch, delta);
-		// // kieu nha 5
-		// renderHouse5(batch, delta);
-		// // kieu nha 6
-		// renderHouse6(batch, delta);
-		// // kieu nha 7
-		// renderHouse7(batch, delta);
+		// if(house1Bg.getPosition().x < -house11.getWidth()) {
+		// house1Bg.getPosition().x += 2000;
+		// }
+		// house1Bg.update(delta);
+		// batch.draw(house1, house1Bg.getPosition().x,
+		// house1Bg.getPosition().y);
+		// if(house2Bg.getPosition().x < -house11.getWidth()) {
+		// house2Bg.getPosition().x += 2000;
+		// }
+		// house2Bg.update(delta);
+		// batch.draw(house1, house2Bg.getPosition().x,
+		// house2Bg.getPosition().y);
+		// if(house3Bg.getPosition().x < -house11.getWidth()) {
+		// house3Bg.getPosition().x += 2000;
+		// }
+		// house3Bg.update(delta);
+		// batch.draw(house1, house3Bg.getPosition().x,
+		// house3Bg.getPosition().y);
+		// if(house4Bg.getPosition().x < -house11.getWidth()) {
+		// house4Bg.getPosition().x += 2000;
+		// }
+		// house4Bg.update(delta);
+		// batch.draw(house1, house4Bg.getPosition().x,
+		// house4Bg.getPosition().y);
+		// if(house5Bg.getPosition().x < -house11.getWidth()) {
+		// house5Bg.getPosition().x += 2000;
+		// }
+		// house5Bg.update(delta);
+		// batch.draw(house1, house5Bg.getPosition().x,
+		// house5Bg.getPosition().y);
+
+		// kiểu nhà 3
+		renderHouse3(batch, delta);
+		// wall
+		renderWall(batch, delta);
+		// kieu nha 1
+		renderHouse1(batch, delta);
+		// kieu nha 2
+		renderHouse2(batch, delta);
+		// kieu nha 4
+		renderHouse4(batch, delta);
+		// kieu nha 5
+		renderHouse5(batch, delta);
+		// kieu nha 6
+		renderHouse6(batch, delta);
+		// kieu nha 7
+		renderHouse7(batch, delta);
 	}
 
 	private void renderHouse7(SpriteBatch batch, float delta) {
@@ -208,7 +233,9 @@ public class HouseRenderer {
 		setXSprite(house34, delta, false);
 		setXSprite(house35, delta, false);
 		setXSprite(house36, delta, false);
-
+		// house1Bg.update(delta);
+		// house31.setPosition(house1Bg.getPosition().x,
+		// house1Bg.getPosition().y);
 		house31.draw(batch);
 		house32.draw(batch);
 		house33.draw(batch);
@@ -229,8 +256,8 @@ public class HouseRenderer {
 			else
 				sprite.setX(sprite.getX() + MathUtils.random(-5, 5) * 100
 						+ widthHouse);
-			// Gdx.app.log("reset sprite", "" + sprite.getX());
 		}
+//		Gdx.app.error("reset sprite" + sprite.toString(), "" + sprite.getX());
 	}
 
 }

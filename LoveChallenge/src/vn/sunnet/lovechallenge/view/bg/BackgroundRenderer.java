@@ -1,6 +1,6 @@
 package vn.sunnet.lovechallenge.view.bg;
 
-import vn.sunnet.lovechallenge.model.World;
+import vn.sunnet.lovechallenge.model.world.World;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

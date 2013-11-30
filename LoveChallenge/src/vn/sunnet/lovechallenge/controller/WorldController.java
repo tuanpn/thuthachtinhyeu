@@ -1,6 +1,6 @@
 package vn.sunnet.lovechallenge.controller;
 
-import vn.sunnet.lovechallenge.model.World;
+import vn.sunnet.lovechallenge.model.world.World;
 
 public class WorldController {
 

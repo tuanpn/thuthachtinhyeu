@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import vn.sunnet.lovechallenge.Resources;
-import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
+import vn.sunnet.lovechallenge.model.world.World;
 
 public class StaticRenderer {
 
@@ -38,9 +38,13 @@ public class StaticRenderer {
 		static3 = Resources.getInstance().static3Sprite;
 		static4 = Resources.getInstance().static4Sprite;
 		carlong1 = Resources.getInstance().carlong1Sprite;
+		carlong1.setScale(1.5f);
 		carlong2 = Resources.getInstance().carlong2Sprite;
+		carlong2.setScale(1.5f);
 		carlong3 = Resources.getInstance().carlong3Sprite;
+		carlong3.setScale(1.5f);
 		carlong4 = Resources.getInstance().carlong4Sprite;
+		carlong4.setScale(1.5f);
 	}
 
 	public void render(SpriteBatch batch, float delta) {

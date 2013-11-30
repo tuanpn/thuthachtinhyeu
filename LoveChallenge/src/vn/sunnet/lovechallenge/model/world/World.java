@@ -1,4 +1,4 @@
-package vn.sunnet.lovechallenge.model;
+package vn.sunnet.lovechallenge.model.world;
 
 import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.staticobjects.Box1;
@@ -59,12 +59,12 @@ public class World {
 		if (stateTimeObject > timeCreate) {
 			stateTimeObject = 0;
 			timeCreate = MathUtils.random(3.f, 5.f);
-			switch (MathUtils.random(0, 7)) {
+			switch (MathUtils.random(7, 7)) {
 			case 0:
 				staticObjects.add(new Car(new Vector2(player.getPosition().x
 						+ MathUtils.random(1000, 1200), 10)));
 				break;
-			case 1:
+			case 1:  
 				staticObjects.add(new Box1(new Vector2(player.getPosition().x
 						+ MathUtils.random(1000, 1200), 10)));
 				break;

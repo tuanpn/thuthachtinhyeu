@@ -1,7 +1,7 @@
 package vn.sunnet.lovechallenge.view;
 
-import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
+import vn.sunnet.lovechallenge.model.world.World;
 import vn.sunnet.lovechallenge.view.bg.BackgroundRenderer;
 import vn.sunnet.lovechallenge.view.player.PlayerRenderer;
 import vn.sunnet.lovechallenge.view.staticobject.StaticRenderer;
@@ -42,7 +42,8 @@ public class WorldRenderer {
 	}
 
 	public void render(float delta) {
-
+		cam.update();
+		batcher.setProjectionMatrix(cam.combined);
 		batcher.begin();
 		bgRenderer.render(batcher, delta);
 		staticRenderer.render(batcher, delta);

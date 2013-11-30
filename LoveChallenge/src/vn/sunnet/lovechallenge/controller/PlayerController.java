@@ -3,10 +3,10 @@ package vn.sunnet.lovechallenge.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import vn.sunnet.lovechallenge.model.World;
 import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.staticobjects.CarLong;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
+import vn.sunnet.lovechallenge.model.world.World;
 
 public class PlayerController {
 
