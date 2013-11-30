@@ -1,0 +1,48 @@
+<static>
+
+    <banana
+        height="40"
+        width="40" >
+    </banana>
+
+    <car
+        height="100"
+        width="150" >
+    </car>
+
+    <box1
+        height="140"
+        width="160" >
+    </box1>
+
+    <box2
+        height="100"
+        width="130" >
+    </box2>
+
+    <static1
+        height="50"
+        width="170" >
+    </static1>
+
+    <static2
+        height="80"
+        width="130" >
+    </static2>
+
+    <static3
+        height="50"
+        width="90" >
+    </static3>
+
+    <static4
+        height="60"
+        width="80" >
+    </static4>
+
+    <carlong
+        height="135"
+        width="420" >
+    </carlong>
+
+</static>

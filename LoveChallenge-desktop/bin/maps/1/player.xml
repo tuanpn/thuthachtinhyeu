@@ -1,0 +1,24 @@
+<player
+    gravity="-980"
+    vx="300"
+    vy="400"
+    x="120"
+    y="35" >
+
+    <run
+        height="100"
+        width="30" >
+    </run>
+
+    <sit
+        height="40"
+        time="1"
+        width="50" >
+    </sit>
+
+    <jump
+        height="50"
+        width="40" >
+    </jump>
+
+</player>
