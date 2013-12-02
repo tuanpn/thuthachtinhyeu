@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 public class Resources {
@@ -27,7 +28,9 @@ public class Resources {
 	}
 
 	public void loadGameScreen(AssetManager manager1, AssetManager manager2) {
-		manager1.load("bg/sky.png", Texture.class);
+		manager1.load("bg/sky-1.png", Texture.class);
+		manager1.load("bg/sky-2.png", Texture.class);
+		manager1.load("bg/sky-3.png", Texture.class);
 		manager1.load("bg/road.png", Texture.class);
 		manager1.load("bg/house.atlas", TextureAtlas.class);
 		manager1.load("bg/bghouse.png", Texture.class);
@@ -38,7 +41,9 @@ public class Resources {
 	}
 
 	public void unloadGameScreen(AssetManager manager1, AssetManager manager2) {
-		manager1.unload("bg/sky.png");
+		manager1.unload("bg/sky-1.png");
+		manager1.unload("bg/sky-2.png");
+		manager1.unload("bg/sky-3.png");
 		manager1.unload("bg/road.png");
 		manager1.unload("bg/house.atlas");
 		manager1.unload("bg/bghouse.png");
@@ -46,7 +51,12 @@ public class Resources {
 		manager1.unload("staticobject/staticobjects.atlas");
 	}
 
-	public Sprite skySprite;
+	public TextureRegion sky1Region;
+	public TextureRegion sky2Region;
+	public TextureRegion sky3Region;
+	public TextureRegion sky4Region;
+	public TextureRegion sky5Region;
+	public TextureRegion sky6Region;
 	public Sprite roadSprite;
 	public Sprite house1Sprite;
 	public Sprite house2Sprite;
@@ -83,9 +93,17 @@ public class Resources {
 
 	public void getGameScreen(AssetManager manager1, AssetManager manager2) {
 		// ============sky=================
-		Texture skyTexture = manager1.get("bg/sky.png");
-		skyTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		skySprite = new Sprite(skyTexture);
+		Texture sky1Texture = manager1.get("bg/sky-1.png");
+		sky1Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		sky1Region = new TextureRegion(sky1Texture);
+		
+		Texture sky2Texture = manager1.get("bg/sky-2.png");
+		sky2Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		sky2Region = new TextureRegion(sky2Texture);
+		
+		Texture sky3Texture = manager1.get("bg/sky-3.png");
+		sky3Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		sky3Region = new TextureRegion(sky3Texture);
 		// ===========road================
 		Texture roadTexture = manager1.get("bg/road.png");
 		roadTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);

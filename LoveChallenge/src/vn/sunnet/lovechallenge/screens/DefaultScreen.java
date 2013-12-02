@@ -16,18 +16,21 @@ public abstract class DefaultScreen implements Screen {
 
 	/**
 	 * thực hiện update screen tại đây
+	 * 
 	 * @param delta
 	 */
 	public abstract void update(float delta);
 
 	/**
 	 * thực hiện draw screen tại đây
+	 * 
 	 * @param delta
 	 */
 	public abstract void draw(float delta);
 
 	/**
 	 * chuyển sang screen mới
+	 * 
 	 * @param delta
 	 */
 	public abstract void nextScreen(float delta);

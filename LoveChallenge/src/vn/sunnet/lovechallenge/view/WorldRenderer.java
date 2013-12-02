@@ -42,14 +42,13 @@ public class WorldRenderer {
 	}
 
 	public void render(float delta) {
-		cam.update();
 		batcher.setProjectionMatrix(cam.combined);
+		cam.update();
 		batcher.begin();
 		bgRenderer.render(batcher, delta);
 		staticRenderer.render(batcher, delta);
 		playerRenderer.render(batcher, delta);
 		batcher.end();
-
 //		if (debug)
 //			drawDebug();
 	}

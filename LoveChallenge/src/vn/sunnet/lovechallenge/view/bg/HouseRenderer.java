@@ -15,7 +15,7 @@ public class HouseRenderer {
 	private World world;
 
 	private Sprite house1;
-	private Sprite house11;
+//	private Sprite house11;
 	private Sprite house2;
 	private Sprite house31;
 	private Sprite house32;
@@ -25,8 +25,8 @@ public class HouseRenderer {
 	private Sprite house36;
 	private Sprite house4;
 	private Sprite house5;
-	private Sprite house51;
-	private Sprite house52;
+//	private Sprite house51;
+//	private Sprite house52;
 	private Sprite house6;
 	private Sprite house7;
 
@@ -40,7 +40,7 @@ public class HouseRenderer {
 	private Sprite wall61;
 
 	// đoạn đường lặp lại của nhà
-	private float widthHouse = 3000;
+	private float widthHouse = 2000;
 
 	Background house1Bg;
 
@@ -50,11 +50,11 @@ public class HouseRenderer {
 		this.world = world;
 		// ===1===
 		house1 = Resources.getInstance().house1Sprite;
-		house1.setPosition(0, 70);
-		house11 = new Sprite(house1);
-		house11.setPosition(MathUtils.random(0, 20) * 50, 70);
+		house1.setPosition(30, 70);
+//		house11 = new Sprite(house1);
+//		house11.setPosition(MathUtils.random(0, 20) * 50, 70);
 		house2 = Resources.getInstance().house2Sprite;
-		house2.setPosition(300, 100);
+		house2.setPosition(380, 80);
 		// ===3===
 		house31 = Resources.getInstance().house3Sprite;
 		house31.setPosition(50, 180);
@@ -72,17 +72,17 @@ public class HouseRenderer {
 		house36.setPosition(2700, house31.getY());
 
 		house4 = Resources.getInstance().house4Sprite;
-		house4.setPosition(800, 100);
+		house4.setPosition(700, 70);
 		house5 = Resources.getInstance().house5Sprite;
-		house5.setPosition(1300, 70);
-		house51 = new Sprite(house5);
-		house51.setPosition(MathUtils.random(0, 10) * 150, house51.getY());
-		house52 = new Sprite(house5);
-		house52.setPosition(MathUtils.random(0, 9) * 300, house52.getY());
+		house5.setPosition(1000, 70);
+//		house51 = new Sprite(house5);
+//		house51.setPosition(MathUtils.random(0, 10) * 150, house51.getY());
+//		house52 = new Sprite(house5);
+//		house52.setPosition(MathUtils.random(0, 9) * 300, house52.getY());
 		house6 = Resources.getInstance().house6Sprite;
-		house6.setPosition(1700, 60);
+		house6.setPosition(1300, 60);
 		house7 = Resources.getInstance().house7Sprite;
-		house7.setPosition(2350, 90);
+		house7.setPosition(1500, 90);
 
 		wall11 = Resources.getInstance().wall1Sprite;
 		wall11.setPosition(house31.getX() - wall11.getWidth() + 10, 170);
@@ -158,14 +158,14 @@ public class HouseRenderer {
 		// kieu nha 6
 		renderHouse6(batch, delta);
 		// kieu nha 7
-		renderHouse7(batch, delta);
+//		renderHouse7(batch, delta);
 	}
 
-	private void renderHouse7(SpriteBatch batch, float delta) {
-		setXSprite(house7, delta, false);
-
-		house7.draw(batch);
-	}
+//	private void renderHouse7(SpriteBatch batch, float delta) {
+//		setXSprite(house7, delta, false);
+//
+//		house7.draw(batch);
+//	}
 
 	private void renderHouse6(SpriteBatch batch, float delta) {
 		setXSprite(house6, delta, false);
@@ -175,12 +175,12 @@ public class HouseRenderer {
 
 	private void renderHouse5(SpriteBatch batch, float delta) {
 		setXSprite(house5, delta, false);
-		setXSprite(house51, delta, true);
-		setXSprite(house52, delta, true);
+//		setXSprite(house51, delta, true);
+//		setXSprite(house52, delta, true);
 
 		house5.draw(batch);
-		house51.draw(batch);
-		house52.draw(batch);
+//		house51.draw(batch);
+//		house52.draw(batch);
 	}
 
 	private void renderHouse4(SpriteBatch batch, float delta) {
@@ -198,9 +198,9 @@ public class HouseRenderer {
 
 	private void renderHouse1(SpriteBatch batch, float delta) {
 		setXSprite(house1, delta, false);
-		setXSprite(house11, delta, true);
+//		setXSprite(house11, delta, true);
 		house1.draw(batch);
-		house11.draw(batch);
+//		house11.draw(batch);
 	}
 
 	/*
@@ -257,7 +257,8 @@ public class HouseRenderer {
 				sprite.setX(sprite.getX() + MathUtils.random(-5, 5) * 100
 						+ widthHouse);
 		}
-//		Gdx.app.error("reset sprite" + sprite.toString(), "" + sprite.getX());
+		// Gdx.app.error("reset sprite" + sprite.toString(), "" +
+		// sprite.getX());
 	}
 
 }

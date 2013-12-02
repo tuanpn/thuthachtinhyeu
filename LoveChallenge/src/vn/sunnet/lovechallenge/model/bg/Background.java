@@ -3,18 +3,16 @@ package vn.sunnet.lovechallenge.model.bg;
 import com.badlogic.gdx.math.Vector2;
 
 public class Background {
-	
-	public static final float REPEAT = 1000;
 
-	private int id;
+	protected int id;
 
-	private Vector2 position;
+	protected Vector2 position;
 
-	private Vector2 velocity;
-	
-	private float width;
-	
-	private float height;
+	protected Vector2 velocity;
+
+	protected float width;
+
+	protected float height;
 
 	public Background(int id) {
 		this(id, 0, 0);
@@ -25,9 +23,16 @@ public class Background {
 	}
 
 	public Background(int id, int x, int y, int vx, int vy) {
+		this(id, x, y, vx, vy, 0, 0);
+	}
+
+	public Background(int id, int x, int y, int vx, int vy, float width,
+			float height) {
 		this.id = id;
 		velocity = new Vector2(vx, vy);
 		position = new Vector2(x, y);
+		this.width = width;
+		this.height = height;
 	}
 
 	public int getId() {
@@ -69,12 +74,9 @@ public class Background {
 	public void setHeight(float height) {
 		this.height = height;
 	}
-	
+
 	public void update(float delta) {
 		position.add(velocity.x * delta, velocity.y * delta);
-		if(position.x < -width) {
-			position.x += REPEAT;
-		}
 	}
 
 }

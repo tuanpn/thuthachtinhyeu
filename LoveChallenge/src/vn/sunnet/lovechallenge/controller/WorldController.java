@@ -17,7 +17,7 @@ public class WorldController {
 		playerController.update(delta);
 		if (!world.isStop()) {
 			world.update(delta);
-
+			
 			Collision.checkCollistion(world, world.getPlayer());
 		}
 	}

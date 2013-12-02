@@ -1,5 +1,7 @@
 package vn.sunnet.lovechallenge.model.world;
 
+import vn.sunnet.lovechallenge.model.bg.Background;
+import vn.sunnet.lovechallenge.model.bg.Sky;
 import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.staticobjects.Box1;
 import vn.sunnet.lovechallenge.model.staticobjects.Box2;
@@ -17,6 +19,14 @@ import com.badlogic.gdx.utils.Array;
 
 public class World {
 
+	// bg
+	private Array<Background> backgrounds;
+
+	public Array<Background> getBackgrounds() {
+		return backgrounds;
+	}
+
+	// player
 	private Player player;
 
 	// static object
@@ -33,11 +43,22 @@ public class World {
 	private float stateTimeObject;
 	private float timeCreate = 2;
 
+	/**
+	 * 0 : sáng ; 1 : sáng sang chiều ; 2 : chiều sang tối ; 3 : tối
+	 */
+	private int typeSky;
+
+	public float stateTime;
+
 	public Player getPlayer() {
 		return player;
 	}
 
 	public World() {
+		// bg
+		backgrounds = new Array<Background>();
+		createBackground();
+		// player
 		player = new Player(0);
 
 		staticObjects = new Array<Impediment>();
@@ -47,9 +68,31 @@ public class World {
 		return player.isStopUpdate();
 	}
 
+	public int getTypeSky() {
+		return typeSky;
+	}
+
+	public void setTypeSky(int typeSky) {
+		this.typeSky = typeSky;
+	}
+
 	public void update(float delta) {
-		
+		stateTime += delta;
+		if (stateTime > 5 && stateTime < 6) {
+			typeSky = 1;
+		} else if (stateTime >= 6) {
+			typeSky = 2;
+		}
+
+		for (Background bg : backgrounds) {
+			bg.update(delta);
+		}
 		createObject(delta);
+	}
+
+	private void createBackground() {
+		backgrounds.add(new Sky(0, 0, 201));
+		backgrounds.add(new Sky(0, 877, 201));
 	}
 
 	// sinh ra các chướng ngại vật
@@ -64,7 +107,7 @@ public class World {
 				staticObjects.add(new Car(new Vector2(player.getPosition().x
 						+ MathUtils.random(1000, 1200), 10)));
 				break;
-			case 1:  
+			case 1:
 				staticObjects.add(new Box1(new Vector2(player.getPosition().x
 						+ MathUtils.random(1000, 1200), 10)));
 				break;
@@ -73,9 +116,9 @@ public class World {
 						+ MathUtils.random(1000, 1200), 20)));
 				break;
 			case 3:
-				staticObjects.add(new Static1(
-						new Vector2(player.getPosition().x
-								+ MathUtils.random(1000, 1200), 5)));
+				staticObjects.add(new Static1(new Vector2(
+						player.getPosition().x + MathUtils.random(1000, 1200),
+						5)));
 				break;
 			case 4:
 				staticObjects.add(new Static2(new Vector2(
@@ -111,12 +154,13 @@ public class World {
 				break;
 			}
 		}
-//		System.out.println("World : " + player.getActionState());
+		// System.out.println("World : " + player.getActionState());
 	}
-	
+
 	public void reset() {
 		player.resetAll();
 		staticObjects.clear();
+		backgrounds.clear();
 	}
 
 }
