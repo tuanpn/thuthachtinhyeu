@@ -66,12 +66,14 @@ public class PlayerController {
 		player.backRun();
 		player.jumpHighOnCar();
 		player.jumpAutoCarToRoad();
-	
+
 		player.update(delta);
 	}
 
 	private void processInput(float delta) {
 		if (keys.get(Keys.FLINGUP)) {
+			int type = Math.random() < 0.5f ? 1 : 2;
+			player.setTypeJump(type);
 			player.setFlingUp(true);
 			flingupReleased();
 		} else if (keys.get(Keys.FLINGDOWN)) {

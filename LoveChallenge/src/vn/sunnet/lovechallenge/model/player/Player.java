@@ -82,6 +82,13 @@ public class Player {
 
 	private int colistionState;
 
+	/**
+	 * 0 : khong nhay,1 :nhay kieu 1,2 :nhay kieu 2
+	 */
+	private int typeJump;
+	private int typeDie;
+	
+	
 	/*
 	 * dừng hình,không cập nhật chạy
 	 */
@@ -353,6 +360,22 @@ public class Player {
 	public void setFlingAuto(boolean flingAuto) {
 		this.flingAuto = flingAuto;
 	}
+	
+	public int getTypeJump() {
+		return typeJump;
+	}
+
+	public void setTypeJump(int typeJump) {
+		this.typeJump = typeJump;
+	}
+	
+	public int getTypeDie() {
+		return typeDie;
+	}
+
+	public void setTypeDie(int typeDie) {
+		this.typeDie = typeDie;
+	}
 
 	public void update(float delta) {
 		switch (actionState.getID()) {
@@ -401,7 +424,7 @@ public class Player {
 		default:
 			break;
 		}
-	
+
 	}
 
 	public void resetAll() {
@@ -411,6 +434,8 @@ public class Player {
 		setStateTimeRunCar(0);
 		setFlingAuto(false);
 		setStateTimeSit(0);
+		setTypeJump(0);
+		setTypeDie(0);
 	}
 
 	public void initStateRun() {

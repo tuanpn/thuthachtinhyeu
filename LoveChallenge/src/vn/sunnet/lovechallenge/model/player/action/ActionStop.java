@@ -30,11 +30,11 @@ public class ActionStop implements PlayerActionState {
 	public void backRun() {
 		if (player.getStateTimeDie() > 2f) {
 			player.resetAll();
-		} 
-		if(player.getStateTimeDie() > 1f) {
+		}
+		if (player.getStateTimeDie() > 1f) {
 			player.setStopUpdate(true);
 		}
-//		System.out.println("yes");
+		// System.out.println("yes");
 	}
 
 	@Override
@@ -45,12 +45,12 @@ public class ActionStop implements PlayerActionState {
 	@Override
 	public void jumpHighOnCar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void jumpAutoCarToRoad() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

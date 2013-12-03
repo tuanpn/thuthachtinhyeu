@@ -55,15 +55,42 @@ public class PlayerRenderer {
 			runNomal.getKeyFrame(player.getStateTimeRun(), true).draw(batch);
 			break;
 		case 1:
-			jump1.setPosition(player.getPosition().x, player.getPosition().y);
-			jump1.getKeyFrame(player.getStateTimeJump1(), false).draw(batch);
+			switch (player.getTypeJump()) {
+			case 1:
+				jump1.setPosition(player.getPosition().x,
+						player.getPosition().y);
+				jump1.getKeyFrame(player.getStateTimeJump1(), false)
+						.draw(batch);
+				break;
+			case 2:
+				jump2.setPosition(player.getPosition().x,
+						player.getPosition().y);
+				jump2.getKeyFrame(player.getStateTimeJump1(), false)
+						.draw(batch);
+				break;
+
+			default:
+				break;
+			}
+
 			break;
 		case 2:
 			sit.setPosition(player.getPosition().x, player.getPosition().y);
 			sit.getKeyFrame(player.getStateTimeSit(), true).draw(batch);
 			break;
 		case 3:
-			die1.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
+			switch (player.getTypeDie()) {
+			case 1:
+				die1.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
+				break;
+			case 2:
+				die2.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
+				break;
+
+			default:
+				break;
+			}
+
 			break;
 		case 4:
 			runNomal.setPosition(player.getPosition().x, player.getPosition().y);

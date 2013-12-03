@@ -1,114 +1,96 @@
 package vn.sunnet.lovechallenge.view.staticobject;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import vn.sunnet.lovechallenge.Resources;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
 import vn.sunnet.lovechallenge.model.world.World;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class StaticRenderer {
 
 	private World world;
 
-	Sprite car1;
-	Sprite car2;
-	Sprite box1;
-	Sprite box2;
-	Sprite static1;
-	Sprite static2;
-	Sprite static3;
-	Sprite static4;
-	Sprite carlong1;
-	Sprite carlong2;
-	Sprite carlong3;
-	Sprite carlong4;
+	TextureRegion car1Region;
+	TextureRegion car2Region;
+	TextureRegion box1Region;
+	TextureRegion box2Region;
+	TextureRegion static1Region;
+	TextureRegion static2Region;
+	TextureRegion static3Region;
+	TextureRegion static4Region;
+	TextureRegion carlong1Region;
+	TextureRegion carlong2Region;
+	TextureRegion carlong3Region;
+	TextureRegion carlong4Region;
 
 	public StaticRenderer(World world) {
 		this.world = world;
 
-		car1 = Resources.getInstance().car1Sprite;
-		car2 = Resources.getInstance().car2Sprite;
-		box1 = Resources.getInstance().box1Sprite;
-		box1.setSize(250, 180);
-		box2 = Resources.getInstance().box2Sprite;
-		box2.setSize(200, 150);
-		static1 = Resources.getInstance().static1Sprite;
-		static2 = Resources.getInstance().static2Sprite;
-		static3 = Resources.getInstance().static3Sprite;
-		static4 = Resources.getInstance().static4Sprite;
-		carlong1 = Resources.getInstance().carlong1Sprite;
-		carlong1.setScale(1.5f);
-		carlong2 = Resources.getInstance().carlong2Sprite;
-		carlong2.setScale(1.5f);
-		carlong3 = Resources.getInstance().carlong3Sprite;
-		carlong3.setScale(1.5f);
-		carlong4 = Resources.getInstance().carlong4Sprite;
-		carlong4.setScale(1.5f);
+		car1Region = Resources.getInstance().car1Region;
+		car2Region = Resources.getInstance().car2Region;
+		box1Region = Resources.getInstance().box1Region;
+		box2Region = Resources.getInstance().box2Region;
+		static1Region = Resources.getInstance().static1Region;
+		static2Region = Resources.getInstance().static2Region;
+		static3Region = Resources.getInstance().static3Region;
+		static4Region = Resources.getInstance().static4Region;
+		carlong1Region = Resources.getInstance().carlong1Region;
+		carlong2Region = Resources.getInstance().carlong2Region;
+		carlong3Region = Resources.getInstance().carlong3Region;
+		carlong4Region = Resources.getInstance().carlong4Region;
 	}
 
 	public void render(SpriteBatch batch, float delta) {
 		for (Impediment impedimentar : world.getStaticObjects()) {
 			switch (impedimentar.getId()) {
 			case "cargray":
-				car1.setPosition(impedimentar.getPosition().x - 50,
+				batch.draw(car1Region, impedimentar.getPosition().x - 50,
 						impedimentar.getPosition().y);
-				car1.draw(batch);
 				break;
 			case "caryellow":
-				car2.setPosition(impedimentar.getPosition().x - 50,
+				batch.draw(car2Region, impedimentar.getPosition().x - 50,
 						impedimentar.getPosition().y);
-				car2.draw(batch);
 				break;
 			case "box1":
-				box1.setPosition(impedimentar.getPosition().x - 30,
+				batch.draw(box1Region, impedimentar.getPosition().x - 30,
 						impedimentar.getPosition().y);
-				box1.draw(batch);
 				break;
 			case "box2":
-				box2.setPosition(impedimentar.getPosition().x,
+				batch.draw(box2Region, impedimentar.getPosition().x,
 						impedimentar.getPosition().y);
-				box2.draw(batch);
 				break;
 			case "static1":
-				static1.setPosition(impedimentar.getPosition().x - 50,
+				batch.draw(static1Region, impedimentar.getPosition().x - 50,
 						impedimentar.getPosition().y);
-				static1.draw(batch);
 				break;
 			case "static2":
-				static2.setPosition(impedimentar.getPosition().x - 50,
+				batch.draw(static2Region, impedimentar.getPosition().x - 50,
 						impedimentar.getPosition().y);
-				static2.draw(batch);
 				break;
 			case "static3":
-				static3.setPosition(impedimentar.getPosition().x - 10,
+				batch.draw(static3Region, impedimentar.getPosition().x - 10,
 						impedimentar.getPosition().y);
-				static3.draw(batch);
 				break;
 			case "static4":
-				static4.setPosition(impedimentar.getPosition().x - 5,
+				batch.draw(static4Region, impedimentar.getPosition().x - 5,
 						impedimentar.getPosition().y);
-				static4.draw(batch);
 				break;
 			case "carlong1":
-				carlong1.setPosition(impedimentar.getPosition().x - 20,
-						impedimentar.getPosition().y);
-				carlong1.draw(batch);
+				batch.draw(carlong1Region, impedimentar.getPosition().x-50,
+						impedimentar.getPosition().y-15);
 				break;
 			case "carlong2":
-				carlong2.setPosition(impedimentar.getPosition().x - 20,
-						impedimentar.getPosition().y);
-				carlong2.draw(batch);
+				batch.draw(carlong2Region, impedimentar.getPosition().x-50,
+						impedimentar.getPosition().y-15);
 				break;
 			case "carlong3":
-				carlong3.setPosition(impedimentar.getPosition().x - 20,
-						impedimentar.getPosition().y);
-				carlong3.draw(batch);
+				batch.draw(carlong3Region, impedimentar.getPosition().x-50,
+						impedimentar.getPosition().y-15);
 				break;
 			case "carlong4":
-				carlong4.setPosition(impedimentar.getPosition().x - 20,
-						impedimentar.getPosition().y);
-				carlong4.draw(batch);
+				batch.draw(carlong4Region, impedimentar.getPosition().x-50,
+						impedimentar.getPosition().y-15);
 				break;
 
 			default:

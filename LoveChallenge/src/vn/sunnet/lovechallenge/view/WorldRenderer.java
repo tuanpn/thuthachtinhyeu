@@ -6,11 +6,15 @@ import vn.sunnet.lovechallenge.view.bg.BackgroundRenderer;
 import vn.sunnet.lovechallenge.view.player.PlayerRenderer;
 import vn.sunnet.lovechallenge.view.staticobject.StaticRenderer;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Vector3;
 
 public class WorldRenderer {
 
@@ -23,6 +27,11 @@ public class WorldRenderer {
 	BackgroundRenderer bgRenderer;
 	PlayerRenderer playerRenderer;
 	StaticRenderer staticRenderer;
+
+	private ShaderProgram shader;
+	// read our shader files
+	String vertexShader;
+	String fragmentShader;
 
 	public WorldRenderer(World world, boolean debug) {
 		this.world = world;
@@ -39,7 +48,19 @@ public class WorldRenderer {
 		bgRenderer = new BackgroundRenderer(world);
 		playerRenderer = new PlayerRenderer(world);
 		staticRenderer = new StaticRenderer(world);
+
+		vertexShader = Gdx.files.internal("vertexShader.glsl").readString();
+		fragmentShader = Gdx.files.internal("vertexShader.glsl").readString();
+		shader = new ShaderProgram(vertexShader, fragmentShader);
+		shader.begin();
+		shader.setUniformi("u_lightmap", 1);
+		shader.setUniformf("ambientColor", ambientColor.x, ambientColor.y,
+				ambientColor.z, ambientIntensity);
+		shader.end();
 	}
+
+	public static final float ambientIntensity = .7f;
+	public static final Vector3 ambientColor = new Vector3(0.3f, 0.3f, 0.7f);
 
 	public void render(float delta) {
 		batcher.setProjectionMatrix(cam.combined);
@@ -49,8 +70,8 @@ public class WorldRenderer {
 		staticRenderer.render(batcher, delta);
 		playerRenderer.render(batcher, delta);
 		batcher.end();
-//		if (debug)
-//			drawDebug();
+		if (debug)
+			drawDebug();
 	}
 
 	ShapeRenderer renderer = new ShapeRenderer();

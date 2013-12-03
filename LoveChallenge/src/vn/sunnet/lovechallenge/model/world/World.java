@@ -1,6 +1,9 @@
 package vn.sunnet.lovechallenge.model.world;
 
 import vn.sunnet.lovechallenge.model.bg.Background;
+import vn.sunnet.lovechallenge.model.bg.BackgroundLayer2;
+import vn.sunnet.lovechallenge.model.bg.House;
+import vn.sunnet.lovechallenge.model.bg.Road;
 import vn.sunnet.lovechallenge.model.bg.Sky;
 import vn.sunnet.lovechallenge.model.player.Player;
 import vn.sunnet.lovechallenge.model.staticobjects.Box1;
@@ -54,6 +57,9 @@ public class World {
 		return player;
 	}
 
+	private Sky sky1;
+	private Sky sky2;
+
 	public World() {
 		// bg
 		backgrounds = new Array<Background>();
@@ -77,11 +83,15 @@ public class World {
 	}
 
 	public void update(float delta) {
-		stateTime += delta;
-		if (stateTime > 5 && stateTime < 6) {
+
+		if (sky1.getCount() == 3) {
 			typeSky = 1;
-		} else if (stateTime >= 6) {
+		} else if (sky1.getCount() > 3 && sky1.getCount() < 7) {
 			typeSky = 2;
+		} else if (sky1.getCount() == 7) {
+			typeSky = 3;
+		} else if (sky1.getCount() > 7) {
+			typeSky = 4;
 		}
 
 		for (Background bg : backgrounds) {
@@ -91,8 +101,26 @@ public class World {
 	}
 
 	private void createBackground() {
+		//0-1
 		backgrounds.add(new Sky(0, 0, 201));
 		backgrounds.add(new Sky(0, 877, 201));
+		sky1 = (Sky) backgrounds.get(0);
+		sky1.setCount(-1);
+		sky2 = (Sky) backgrounds.get(1);
+		// add road 2-3
+		backgrounds.add(new Road(0, 0, 0));
+		backgrounds.add(new Road(0, 877, 0));
+		// add layer2 4-5
+		backgrounds.add(new BackgroundLayer2(0, 0, 201));
+		backgrounds.add(new BackgroundLayer2(0, 843, 201));
+		// add house 6-11
+		backgrounds.add(new House(0, 30, 70, 295, 407));
+		backgrounds.add(new House(0, 380, 80, 176, 348));
+		backgrounds.add(new House(0, 700, 70, 164, 255));
+		backgrounds.add(new House(0, 700, 70, 205, 419));
+		backgrounds.add(new House(0, 1000, 70, 224, 343));
+		backgrounds.add(new House(0, 1300, 70, 541, 495));
+
 	}
 
 	// sinh ra các chướng ngại vật

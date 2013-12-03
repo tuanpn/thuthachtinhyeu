@@ -53,6 +53,11 @@ public class SkyRenderer {
 		
 		sky3Region1 = Resources.getInstance().sky3Region;
 		sky3Region2 = new TextureRegion(sky3Region1);
+		
+		sky4Region1 = Resources.getInstance().sky4Region;
+		
+		sky5Region1 = Resources.getInstance().sky5Region;
+		sky5Region2 = new TextureRegion(sky5Region1);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
@@ -63,12 +68,30 @@ public class SkyRenderer {
 			batch.draw(sky1Region2, sky2.getPosition().x, sky2.getPosition().y);
 			break;
 		case 1:
-			batch.draw(sky2Region1, sky1.getPosition().x, sky1.getPosition().y);
-			batch.draw(sky3Region1, sky2.getPosition().x, sky2.getPosition().y);
+			if(sky2.getCount() == 2) {
+				batch.draw(sky2Region1, sky1.getPosition().x, sky1.getPosition().y);
+				batch.draw(sky1Region2, sky2.getPosition().x, sky2.getPosition().y);
+			} else if(sky2.getCount() == 4) {
+				batch.draw(sky2Region1, sky1.getPosition().x, sky1.getPosition().y);
+				batch.draw(sky3Region1, sky2.getPosition().x, sky2.getPosition().y);
+			}
 			break;
 		case 2:
 			batch.draw(sky3Region1, sky1.getPosition().x, sky1.getPosition().y);
 			batch.draw(sky3Region2, sky2.getPosition().x, sky2.getPosition().y);
+			break;
+		case 3:
+			if(sky2.getCount() == 6) {
+				batch.draw(sky4Region1, sky1.getPosition().x, sky1.getPosition().y);
+				batch.draw(sky3Region2, sky2.getPosition().x, sky2.getPosition().y);
+			} else if(sky2.getCount() == 8) {
+				batch.draw(sky4Region1, sky1.getPosition().x, sky1.getPosition().y);
+				batch.draw(sky5Region1, sky2.getPosition().x, sky2.getPosition().y);
+			}
+			break;
+		case 4:
+			batch.draw(sky5Region1, sky1.getPosition().x, sky1.getPosition().y);
+			batch.draw(sky5Region2, sky2.getPosition().x, sky2.getPosition().y);
 			break;
 
 		default:

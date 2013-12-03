@@ -49,6 +49,8 @@ public class ActionRunCar implements PlayerActionState {
 
 			break;
 		case 1:
+			int type = Math.random() < 0.5f ? 1 : 2;
+			player.setTypeDie(type);
 			player.setActionState(player.getStopState());
 			break;
 		case 2:
@@ -74,12 +76,12 @@ public class ActionRunCar implements PlayerActionState {
 	@Override
 	public void jumpHighOnCar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void jumpAutoCarToRoad() {
-		
+
 	}
 
 }

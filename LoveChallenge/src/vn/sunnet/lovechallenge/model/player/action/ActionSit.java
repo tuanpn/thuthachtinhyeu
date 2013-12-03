@@ -27,6 +27,8 @@ public class ActionSit implements PlayerActionState {
 
 			break;
 		case 1:
+			int type = Math.random() < 0.5f ? 1 : 2;
+			player.setTypeDie(type);
 			player.setActionState(player.getStopState());
 			break;
 		case 2:

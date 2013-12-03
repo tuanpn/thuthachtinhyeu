@@ -31,6 +31,9 @@ public class Resources {
 		manager1.load("bg/sky-1.png", Texture.class);
 		manager1.load("bg/sky-2.png", Texture.class);
 		manager1.load("bg/sky-3.png", Texture.class);
+		manager1.load("bg/sky-4.png", Texture.class);
+		manager1.load("bg/sky-5.png", Texture.class);
+		manager1.load("bg/sky-6.png", Texture.class);
 		manager1.load("bg/road.png", Texture.class);
 		manager1.load("bg/house.atlas", TextureAtlas.class);
 		manager1.load("bg/bghouse.png", Texture.class);
@@ -44,6 +47,9 @@ public class Resources {
 		manager1.unload("bg/sky-1.png");
 		manager1.unload("bg/sky-2.png");
 		manager1.unload("bg/sky-3.png");
+		manager1.unload("bg/sky-4.png");
+		manager1.unload("bg/sky-5.png");
+		manager1.unload("bg/sky-6.png");
 		manager1.unload("bg/road.png");
 		manager1.unload("bg/house.atlas");
 		manager1.unload("bg/bghouse.png");
@@ -57,17 +63,17 @@ public class Resources {
 	public TextureRegion sky4Region;
 	public TextureRegion sky5Region;
 	public TextureRegion sky6Region;
-	public Sprite roadSprite;
-	public Sprite house1Sprite;
-	public Sprite house2Sprite;
-	public Sprite house3Sprite;
-	public Sprite house4Sprite;
-	public Sprite house5Sprite;
-	public Sprite house6Sprite;
-	public Sprite house7Sprite;
+	public TextureRegion roadRegion;
+	public TextureRegion house1Region;
+	public TextureRegion house2Region;
+	public TextureRegion house3Region;
+	public TextureRegion house4Region;
+	public TextureRegion house5Region;
+	public TextureRegion house6Region;
+	public TextureRegion house7Region;
 	public Sprite wall1Sprite;
 	public Sprite wall2Sprite;
-	public Sprite bghouseSprite;
+	public TextureRegion bghouseRegion;
 
 	public AnimationCompositeSprite player_run_normal;
 	public AnimationCompositeSprite player_run_cry;
@@ -78,45 +84,53 @@ public class Resources {
 	public AnimationCompositeSprite player_die_1;
 	public AnimationCompositeSprite player_die_2;
 
-	public Sprite car1Sprite;
-	public Sprite car2Sprite;
-	public Sprite box1Sprite;
-	public Sprite box2Sprite;
-	public Sprite static1Sprite;
-	public Sprite static2Sprite;
-	public Sprite static3Sprite;
-	public Sprite static4Sprite;
-	public Sprite carlong1Sprite;
-	public Sprite carlong2Sprite;
-	public Sprite carlong3Sprite;
-	public Sprite carlong4Sprite;
+	public TextureRegion car1Region;
+	public TextureRegion car2Region;
+	public TextureRegion box1Region;
+	public TextureRegion box2Region;
+	public TextureRegion static1Region;
+	public TextureRegion static2Region;
+	public TextureRegion static3Region;
+	public TextureRegion static4Region;
+	public TextureRegion carlong1Region;
+	public TextureRegion carlong2Region;
+	public TextureRegion carlong3Region;
+	public TextureRegion carlong4Region;
 
 	public void getGameScreen(AssetManager manager1, AssetManager manager2) {
 		// ============sky=================
 		Texture sky1Texture = manager1.get("bg/sky-1.png");
 		sky1Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		sky1Region = new TextureRegion(sky1Texture);
-		
+
 		Texture sky2Texture = manager1.get("bg/sky-2.png");
 		sky2Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		sky2Region = new TextureRegion(sky2Texture);
-		
+
 		Texture sky3Texture = manager1.get("bg/sky-3.png");
 		sky3Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		sky3Region = new TextureRegion(sky3Texture);
+
+		Texture sky4Texture = manager1.get("bg/sky-4.png");
+		sky4Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		sky4Region = new TextureRegion(sky4Texture);
+
+		Texture sky5Texture = manager1.get("bg/sky-5.png");
+		sky5Texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		sky5Region = new TextureRegion(sky5Texture);
 		// ===========road================
 		Texture roadTexture = manager1.get("bg/road.png");
 		roadTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		roadSprite = new Sprite(roadTexture);
+		roadRegion = new TextureRegion(roadTexture);
 		// ===========house=================
 		TextureAtlas houseAtlas = manager1.get("bg/house.atlas");
-		house1Sprite = houseAtlas.createSprite("house1");
-		house2Sprite = houseAtlas.createSprite("house2");
-		house3Sprite = houseAtlas.createSprite("house3");
-		house4Sprite = houseAtlas.createSprite("house4");
-		house5Sprite = houseAtlas.createSprite("house5");
-		house6Sprite = houseAtlas.createSprite("house6");
-		house7Sprite = houseAtlas.createSprite("house7");
+		house1Region = houseAtlas.findRegion("house1");
+		house2Region = houseAtlas.findRegion("house2");
+		house3Region = houseAtlas.findRegion("house3");
+		house4Region = houseAtlas.findRegion("house4");
+		house5Region = houseAtlas.findRegion("house5");
+		house6Region = houseAtlas.findRegion("house6");
+		house7Region = houseAtlas.findRegion("house7");
 
 		wall1Sprite = houseAtlas.createSprite("wall");
 		wall2Sprite = houseAtlas.createSprite("wall-2");
@@ -124,7 +138,7 @@ public class Resources {
 		// ==========housebg=================
 		Texture bghouseTexture = manager1.get("bg/bghouse.png");
 		bghouseTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		bghouseSprite = new Sprite(bghouseTexture);
+		bghouseRegion = new TextureRegion(bghouseTexture);
 
 		TextureAtlas playerAtlas = manager1.get("player/player.atlas");
 		// run
@@ -179,18 +193,18 @@ public class Resources {
 		// static
 		TextureAtlas staticObjects = manager1
 				.get("staticobject/staticobjects.atlas");
-		car1Sprite = staticObjects.createSprite("o-to");
-		car2Sprite = staticObjects.createSprite("o-to-2");
-		box1Sprite = staticObjects.createSprite("box-1");
-		box2Sprite = staticObjects.createSprite("box-2");
-		static1Sprite = staticObjects.createSprite("vc-1");
-		static2Sprite = staticObjects.createSprite("vc-2");
-		static3Sprite = staticObjects.createSprite("vc-4");
-		static4Sprite = staticObjects.createSprite("vc-5");
-		carlong1Sprite = staticObjects.createSprite("car-1");
-		carlong2Sprite = staticObjects.createSprite("car-2");
-		carlong3Sprite = staticObjects.createSprite("car-3");
-		carlong4Sprite = staticObjects.createSprite("car-4");
+		car1Region = staticObjects.findRegion("o-to");
+		car2Region = staticObjects.findRegion("o-to-2");
+		box1Region = staticObjects.findRegion("box-1");
+		box2Region = staticObjects.findRegion("box-2");
+		static1Region = staticObjects.findRegion("vc-1");
+		static2Region = staticObjects.findRegion("vc-2");
+		static3Region = staticObjects.findRegion("vc-4");
+		static4Region = staticObjects.findRegion("vc-5");
+		carlong1Region = staticObjects.findRegion("car-1");
+		carlong2Region = staticObjects.findRegion("car-2");
+		carlong3Region = staticObjects.findRegion("car-3");
+		carlong4Region = staticObjects.findRegion("car-4");
 	}
 
 	public Array<CompositeSprite> getArrayCompositeSprite(int lengFrame,

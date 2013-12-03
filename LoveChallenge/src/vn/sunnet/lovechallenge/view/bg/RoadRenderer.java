@@ -1,58 +1,34 @@
 package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
-import vn.sunnet.lovechallenge.controller.LoadMap;
+import vn.sunnet.lovechallenge.model.bg.Road;
 import vn.sunnet.lovechallenge.model.world.World;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class RoadRenderer {
 
-	private Sprite roadSprite1;
-	private Sprite roadSprite2;
-	private float width;
+	private TextureRegion roadRegion1;
+	private TextureRegion roadRegion2;
 
-	boolean check = true;
-	
-	float velocity;
-	
 	private World world;
-	
+	private Road road1;
+	private Road road2;
+
 	public RoadRenderer(World world) {
 		this.world = world;
-		roadSprite1 = Resources.getInstance().roadSprite;
-		width = roadSprite1.getWidth();
+		road1 = (Road) world.getBackgrounds().get(2);
+		road2 = (Road) world.getBackgrounds().get(3);
 
-		roadSprite2 = new Sprite(roadSprite1);
-		roadSprite2.setPosition(roadSprite1.getY() + width, roadSprite1.getY());
-		
-		velocity = LoadMap.player_velocity_x;
+		roadRegion1 = Resources.getInstance().roadRegion;
+
+		roadRegion2 = new TextureRegion(roadRegion1);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		if(!world.isStop()) {
-			float deltaX = -velocity * delta;
-			roadSprite1.setX(roadSprite1.getX() + deltaX);
-		}
-
-		if (0 > roadSprite1.getX() + width) {
-			roadSprite1.setX(roadSprite1.getX() + width + width);
-			check = false;
-		}
-
-		if (0 > roadSprite2.getX() + width) {
-			check = true;
-		}
-
-		if (check) {
-			roadSprite2.setX(roadSprite1.getX() + width);
-		} else {
-			roadSprite2.setX(roadSprite1.getX() - width);
-		}
-
-		roadSprite1.draw(batch);
-		roadSprite2.draw(batch);
+		batch.draw(roadRegion1, road1.getPosition().x, road1.getPosition().y);
+		batch.draw(roadRegion2, road2.getPosition().x, road2.getPosition().y);
 	}
 
 }

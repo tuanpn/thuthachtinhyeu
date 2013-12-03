@@ -1,10 +1,11 @@
 package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
+import vn.sunnet.lovechallenge.model.bg.BackgroundLayer2;
 import vn.sunnet.lovechallenge.model.world.World;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * vẽ những nhà nền ở phía sau
@@ -13,45 +14,26 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class HouseBGRenderer {
 
-	private Sprite bghouse1;
-	private Sprite bghouse2;
-	private float width;
+	private TextureRegion bghouse1;
+	private TextureRegion bghouse2;
+	
 	private World world;
+	
+	private BackgroundLayer2 bg1;
+	private BackgroundLayer2 bg2;
 
 	public HouseBGRenderer(World world) {
 		this.world = world;
-		bghouse1 = Resources.getInstance().bghouseSprite;
-		bghouse1.setPosition(0, 201);
-		width = bghouse1.getWidth();
+		bg1 = (BackgroundLayer2) world.getBackgrounds().get(4);
+		bg2 = (BackgroundLayer2) world.getBackgrounds().get(5);
+		
+		bghouse1 = Resources.getInstance().bghouseRegion;
 
-		bghouse2 = new Sprite(bghouse1);
-		bghouse2.setPosition(bghouse1.getX() + width, bghouse1.getY());
+		bghouse2 = new TextureRegion(bghouse1);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		if (!world.isStop()) {
-			float deltaX = -100 * delta;
-			bghouse1.setX(bghouse1.getX() + deltaX);
-			bghouse2.setX(bghouse2.getX() + deltaX);
-		}
-
-		if (0 > bghouse1.getX() + width) {
-			bghouse1.setX(bghouse1.getX() + width + width);
-		}
-
-		if (0 > bghouse2.getX() + width) {
-			bghouse2.setX(bghouse2.getX() + width + width);
-		}
-
-		// if (cam.position.x >= bghouse1.getX() + width + 400) {
-		// bghouse1.setX(bghouse1.getX() + width + width);
-		// }
-		//
-		// if (cam.position.x >= bghouse2.getX() + width + 400) {
-		// bghouse2.setX(bghouse2.getX() + width + width);
-		// }
-
-		bghouse1.draw(batch);
-		bghouse2.draw(batch);
+		batch.draw(bghouse1, bg1.getPosition().x, bg1.getPosition().y);
+		batch.draw(bghouse2, bg2.getPosition().x, bg2.getPosition().y);
 	}
 }
