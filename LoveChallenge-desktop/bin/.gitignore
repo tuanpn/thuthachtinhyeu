@@ -1,1 +1,8 @@
 /bg
+/maps
+/player
+/player2
+/staticobject
+/vn
+/pixelShader.glsl
+/vertexShader.glsl
