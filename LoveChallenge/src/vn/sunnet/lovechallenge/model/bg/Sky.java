@@ -5,13 +5,13 @@ public class Sky extends Background {
 	private int count;
 
 	public Sky(int id, int x, int y) {
-		super(id, x, y, -250, 0, 877, 337);
+		super(id, x, y, -50, 0, 1000, 400);
 	}
 
 	@Override
 	public void update(float delta) {
 		super.update(delta);
-		if (position.x < -width) {
+		if (repeat) {
 			position.x += (width + width);
 			setCount(getCount() + 2);
 		}

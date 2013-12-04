@@ -1,60 +1,66 @@
 package vn.sunnet.lovechallenge.view.bg;
 
 import vn.sunnet.lovechallenge.Resources;
-import vn.sunnet.lovechallenge.controller.LoadMap;
-import vn.sunnet.lovechallenge.model.bg.Background;
 import vn.sunnet.lovechallenge.model.bg.House;
+import vn.sunnet.lovechallenge.model.bg.Lamppost;
 import vn.sunnet.lovechallenge.model.world.World;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 
 public class HouseRenderer {
 
 	private World world;
 
-	private TextureRegion house1Region;
-	private TextureRegion house2Region;
-	private TextureRegion house3Region;
-	private TextureRegion house4Region;
-	private TextureRegion house5Region;
-	private TextureRegion house6Region;
+	private TextureRegion neighborhoodRegion;
+	private TextureRegion lamppostRegion;
 
 	House house1;
 	House house2;
-	House house3;
-	House house4;
-	House house5;
-	House house6;
+
+	// lamppost
+	Lamppost lamppost1;
+	Lamppost lamppost2;
+	Lamppost lamppost3;
+	Lamppost lamppost4;
+	Lamppost lamppost5;
+	Lamppost lamppost6;
 
 	public HouseRenderer(World world) {
 		this.world = world;
 
-		house1Region = Resources.getInstance().house1Region;
-		house2Region = Resources.getInstance().house2Region;
-		house3Region = Resources.getInstance().house3Region;
-		house4Region = Resources.getInstance().house4Region;
-		house5Region = Resources.getInstance().house5Region;
-		house6Region = Resources.getInstance().house6Region;
+		neighborhoodRegion = Resources.getInstance().neighborhoodRegion;
+		lamppostRegion = Resources.getInstance().lamppostRegion;
 
 		house1 = (House) world.getBackgrounds().get(6);
 		house2 = (House) world.getBackgrounds().get(7);
-		house3 = (House) world.getBackgrounds().get(8);
-		house4 = (House) world.getBackgrounds().get(9);
-		house5 = (House) world.getBackgrounds().get(10);
-		house6 = (House) world.getBackgrounds().get(11);
+
+		lamppost1 = (Lamppost) world.getBackgrounds().get(8);
+		lamppost2 = (Lamppost) world.getBackgrounds().get(9);
+		lamppost3 = (Lamppost) world.getBackgrounds().get(10);
+		lamppost4 = (Lamppost) world.getBackgrounds().get(11);
+		lamppost5 = (Lamppost) world.getBackgrounds().get(12);
+		lamppost6 = (Lamppost) world.getBackgrounds().get(13);
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		batch.draw(house1Region, house1.getPosition().x, house1.getPosition().y);
-		batch.draw(house2Region, house2.getPosition().x, house2.getPosition().y);
-		batch.draw(house3Region, house3.getPosition().x, house3.getPosition().y);
-		batch.draw(house4Region, house4.getPosition().x, house4.getPosition().y);
-		batch.draw(house5Region, house5.getPosition().x, house5.getPosition().y);
-		batch.draw(house6Region, house6.getPosition().x, house6.getPosition().y);
+		batch.draw(neighborhoodRegion, house1.getPosition().x,
+				house1.getPosition().y);
+		batch.draw(neighborhoodRegion, house2.getPosition().x,
+				house2.getPosition().y);
+		// lamppost
+		batch.draw(lamppostRegion, lamppost1.getPosition().x,
+				lamppost1.getPosition().y);
+		batch.draw(lamppostRegion, lamppost2.getPosition().x,
+				lamppost2.getPosition().y);
+		batch.draw(lamppostRegion, lamppost3.getPosition().x,
+				lamppost3.getPosition().y);
+		batch.draw(lamppostRegion, lamppost4.getPosition().x,
+				lamppost4.getPosition().y);
+		batch.draw(lamppostRegion, lamppost5.getPosition().x,
+				lamppost5.getPosition().y);
+		batch.draw(lamppostRegion, lamppost6.getPosition().x,
+				lamppost6.getPosition().y);
 	}
 
 }

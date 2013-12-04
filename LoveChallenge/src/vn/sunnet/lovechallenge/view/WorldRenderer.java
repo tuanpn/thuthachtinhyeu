@@ -6,15 +6,13 @@ import vn.sunnet.lovechallenge.view.bg.BackgroundRenderer;
 import vn.sunnet.lovechallenge.view.player.PlayerRenderer;
 import vn.sunnet.lovechallenge.view.staticobject.StaticRenderer;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class WorldRenderer {
 
@@ -22,62 +20,58 @@ public class WorldRenderer {
 	private boolean debug;
 
 	SpriteBatch batcher;
-	OrthographicCamera cam;
 
 	BackgroundRenderer bgRenderer;
 	PlayerRenderer playerRenderer;
 	StaticRenderer staticRenderer;
 
-	private ShaderProgram shader;
-	// read our shader files
-	String vertexShader;
-	String fragmentShader;
-
 	public WorldRenderer(World world, boolean debug) {
 		this.world = world;
 		this.debug = debug;
 
-		cam = new OrthographicCamera();
-		cam.setToOrtho(false, 800, 480);
-		cam.position.set(400, 240, 0);
-		cam.update();
-
 		batcher = new SpriteBatch();
-		batcher.setProjectionMatrix(cam.combined);
+		batcher.setProjectionMatrix(world.cam.combined);
 
 		bgRenderer = new BackgroundRenderer(world);
 		playerRenderer = new PlayerRenderer(world);
 		staticRenderer = new StaticRenderer(world);
-
-		vertexShader = Gdx.files.internal("vertexShader.glsl").readString();
-		fragmentShader = Gdx.files.internal("vertexShader.glsl").readString();
-		shader = new ShaderProgram(vertexShader, fragmentShader);
-		shader.begin();
-		shader.setUniformi("u_lightmap", 1);
-		shader.setUniformf("ambientColor", ambientColor.x, ambientColor.y,
-				ambientColor.z, ambientIntensity);
-		shader.end();
 	}
 
 	public static final float ambientIntensity = .7f;
 	public static final Vector3 ambientColor = new Vector3(0.3f, 0.3f, 0.7f);
 
 	public void render(float delta) {
-		batcher.setProjectionMatrix(cam.combined);
-		cam.update();
+		batcher.setProjectionMatrix(world.cam.combined);
+		// switch (world.getTypeSky()) {
+		// case 1:
+		// batcher.setColor(1, 1, 1, 1);
+		// break;
+		// case 2:
+		// batcher.setColor(0.8f, 0.8f, 0.8f, 1);
+		// break;
+		// case 3:
+		// batcher.setColor(0.6f, 0.6f, 0.6f, 1);
+		// break;
+		// case 4:
+		// batcher.setColor(0.4f, 0.4f, 0.4f, 1);
+		// break;
+		// default:
+		// break;
+		// }
+
 		batcher.begin();
 		bgRenderer.render(batcher, delta);
 		staticRenderer.render(batcher, delta);
 		playerRenderer.render(batcher, delta);
 		batcher.end();
-		if (debug)
-			drawDebug();
+		// if (debug)
+		// drawDebug();
 	}
 
 	ShapeRenderer renderer = new ShapeRenderer();
 
 	private void drawDebug() {
-		renderer.setProjectionMatrix(cam.combined);
+		renderer.setProjectionMatrix(world.cam.combined);
 		renderer.begin(ShapeType.Line);
 		renderer.setColor(Color.GREEN);
 		renderer.rect(world.getPlayer().getBounds().x, world.getPlayer()

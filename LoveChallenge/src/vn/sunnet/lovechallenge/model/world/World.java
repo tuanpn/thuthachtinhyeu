@@ -3,6 +3,7 @@ package vn.sunnet.lovechallenge.model.world;
 import vn.sunnet.lovechallenge.model.bg.Background;
 import vn.sunnet.lovechallenge.model.bg.BackgroundLayer2;
 import vn.sunnet.lovechallenge.model.bg.House;
+import vn.sunnet.lovechallenge.model.bg.Lamppost;
 import vn.sunnet.lovechallenge.model.bg.Road;
 import vn.sunnet.lovechallenge.model.bg.Sky;
 import vn.sunnet.lovechallenge.model.player.Player;
@@ -16,6 +17,7 @@ import vn.sunnet.lovechallenge.model.staticobjects.Static2;
 import vn.sunnet.lovechallenge.model.staticobjects.Static3;
 import vn.sunnet.lovechallenge.model.staticobjects.Static4;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -53,6 +55,8 @@ public class World {
 
 	public float stateTime;
 
+	public OrthographicCamera cam;
+
 	public Player getPlayer() {
 		return player;
 	}
@@ -68,6 +72,10 @@ public class World {
 		player = new Player(0);
 
 		staticObjects = new Array<Impediment>();
+
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, 800, 480);
+		cam.position.set(400, 240, 0);
 	}
 
 	public boolean isStop() {
@@ -83,6 +91,8 @@ public class World {
 	}
 
 	public void update(float delta) {
+		cam.position.x = player.getPosition().x + 400 - player.POSITION_INIT_X;
+		cam.update();
 
 		if (sky1.getCount() == 3) {
 			typeSky = 1;
@@ -95,15 +105,18 @@ public class World {
 		}
 
 		for (Background bg : backgrounds) {
+			if (cam.position.x < -bg.getWidth()) {
+				bg.setRepeat(true);
+			}
 			bg.update(delta);
 		}
 		createObject(delta);
 	}
 
 	private void createBackground() {
-		//0-1
-		backgrounds.add(new Sky(0, 0, 201));
-		backgrounds.add(new Sky(0, 877, 201));
+		// 0-1
+		backgrounds.add(new Sky(0, 0, 600));
+		backgrounds.add(new Sky(0, 1000, 600));
 		sky1 = (Sky) backgrounds.get(0);
 		sky1.setCount(-1);
 		sky2 = (Sky) backgrounds.get(1);
@@ -113,14 +126,16 @@ public class World {
 		// add layer2 4-5
 		backgrounds.add(new BackgroundLayer2(0, 0, 201));
 		backgrounds.add(new BackgroundLayer2(0, 843, 201));
-		// add house 6-11
-		backgrounds.add(new House(0, 30, 70, 295, 407));
-		backgrounds.add(new House(0, 380, 80, 176, 348));
-		backgrounds.add(new House(0, 700, 70, 164, 255));
-		backgrounds.add(new House(0, 700, 70, 205, 419));
-		backgrounds.add(new House(0, 1000, 70, 224, 343));
-		backgrounds.add(new House(0, 1300, 70, 541, 495));
-
+		// add house 6
+		backgrounds.add(new House(0, 0, 0, 3000, 1000));
+		backgrounds.add(new House(0, 3000, 0, 3000, 1000));
+		// lamppost
+		backgrounds.add(new Lamppost(0, 20, 60));
+		backgrounds.add(new Lamppost(0, 520, 60));
+		backgrounds.add(new Lamppost(0, 1020, 60));
+		backgrounds.add(new Lamppost(0, 1520, 60));
+		backgrounds.add(new Lamppost(0, 2020, 60));
+		backgrounds.add(new Lamppost(0, 2520, 60));
 	}
 
 	// sinh ra các chướng ngại vật
@@ -130,7 +145,7 @@ public class World {
 		if (stateTimeObject > timeCreate) {
 			stateTimeObject = 0;
 			timeCreate = MathUtils.random(3.f, 5.f);
-			switch (MathUtils.random(7, 7)) {
+			switch (MathUtils.random(0, 7)) {
 			case 0:
 				staticObjects.add(new Car(new Vector2(player.getPosition().x
 						+ MathUtils.random(1000, 1200), 10)));

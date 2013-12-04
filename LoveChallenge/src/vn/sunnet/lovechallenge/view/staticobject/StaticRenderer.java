@@ -54,11 +54,11 @@ public class StaticRenderer {
 				break;
 			case "box1":
 				batch.draw(box1Region, impedimentar.getPosition().x - 30,
-						impedimentar.getPosition().y);
+						impedimentar.getPosition().y, 180, 150);
 				break;
 			case "box2":
 				batch.draw(box2Region, impedimentar.getPosition().x,
-						impedimentar.getPosition().y);
+						impedimentar.getPosition().y, 120, 100);
 				break;
 			case "static1":
 				batch.draw(static1Region, impedimentar.getPosition().x - 50,
@@ -77,20 +77,20 @@ public class StaticRenderer {
 						impedimentar.getPosition().y);
 				break;
 			case "carlong1":
-				batch.draw(carlong1Region, impedimentar.getPosition().x-50,
-						impedimentar.getPosition().y-15);
+				batch.draw(carlong1Region, impedimentar.getPosition().x - 20,
+						impedimentar.getPosition().y - 15);
 				break;
 			case "carlong2":
-				batch.draw(carlong2Region, impedimentar.getPosition().x-50,
-						impedimentar.getPosition().y-15);
+				batch.draw(carlong2Region, impedimentar.getPosition().x - 20,
+						impedimentar.getPosition().y - 15);
 				break;
 			case "carlong3":
-				batch.draw(carlong3Region, impedimentar.getPosition().x-50,
-						impedimentar.getPosition().y-15);
+				batch.draw(carlong3Region, impedimentar.getPosition().x - 20,
+						impedimentar.getPosition().y - 15);
 				break;
 			case "carlong4":
-				batch.draw(carlong4Region, impedimentar.getPosition().x-50,
-						impedimentar.getPosition().y-15);
+				batch.draw(carlong4Region, impedimentar.getPosition().x - 20,
+						impedimentar.getPosition().y - 15);
 				break;
 
 			default:

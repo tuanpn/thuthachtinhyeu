@@ -87,8 +87,7 @@ public class Player {
 	 */
 	private int typeJump;
 	private int typeDie;
-	
-	
+
 	/*
 	 * dừng hình,không cập nhật chạy
 	 */
@@ -98,7 +97,7 @@ public class Player {
 		this.id = id;
 
 		position = new Vector2(POSITION_INIT_X, POSITION_INIT_Y);
-		veloctity = new Vector2(0, 0);
+		veloctity = new Vector2(VELOCITY_X, 0);
 		accelation = new Vector2(0, 0);
 		bounds = new Rectangle(POSITION_INIT_X, POSITION_INIT_Y, WIDTH_RUN,
 				HEIGHT_RUN);
@@ -360,7 +359,7 @@ public class Player {
 	public void setFlingAuto(boolean flingAuto) {
 		this.flingAuto = flingAuto;
 	}
-	
+
 	public int getTypeJump() {
 		return typeJump;
 	}
@@ -368,7 +367,7 @@ public class Player {
 	public void setTypeJump(int typeJump) {
 		this.typeJump = typeJump;
 	}
-	
+
 	public int getTypeDie() {
 		return typeDie;
 	}

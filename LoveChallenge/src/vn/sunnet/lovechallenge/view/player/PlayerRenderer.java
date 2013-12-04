@@ -31,9 +31,9 @@ public class PlayerRenderer {
 		runNomal.setPosition(world.getPlayer().getPosition().x, world
 				.getPlayer().getPosition().y);
 
-		runCry = Resources.getInstance().player_run_cry;
-		runCry.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
-				.getPosition().y);
+//		runCry = Resources.getInstance().player_run_cry;
+//		runCry.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
+//				.getPosition().y);
 
 		jump1 = Resources.getInstance().player_jump_1;
 		jump2 = Resources.getInstance().player_jump_2;

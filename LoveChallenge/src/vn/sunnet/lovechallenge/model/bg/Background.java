@@ -13,6 +13,8 @@ public class Background {
 	protected float width;
 
 	protected float height;
+	// lặp lại thì tăng vị trí lên
+	protected boolean repeat;
 
 	public Background(int id) {
 		this(id, 0, 0);
@@ -73,6 +75,14 @@ public class Background {
 
 	public void setHeight(float height) {
 		this.height = height;
+	}
+
+	public boolean isRepeat() {
+		return repeat;
+	}
+
+	public void setRepeat(boolean repeat) {
+		this.repeat = repeat;
 	}
 
 	public void update(float delta) {
