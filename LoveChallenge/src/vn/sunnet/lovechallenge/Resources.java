@@ -103,7 +103,7 @@ public class Resources {
 		Array<CompositeSprite> player_runFrames = getArrayCompositeSprite(21,
 				"run ", "run ", playerAtlas);
 		player_run_normal = new AnimationCompositeSprite(
-				0.6f / player_runFrames.size, player_runFrames);
+				0.5f / player_runFrames.size, player_runFrames);
 		player_run_normal.setPlayMode(AnimationSprite.LOOP);
 
 		// Array<CompositeSprite> player_run_cry_Frames =

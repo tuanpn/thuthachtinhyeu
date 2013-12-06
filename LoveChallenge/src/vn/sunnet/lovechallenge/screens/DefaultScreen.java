@@ -5,6 +5,7 @@ import vn.sunnet.lovechallenge.MainGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GLCommon;
 
 public abstract class DefaultScreen implements Screen {
 
@@ -37,8 +38,11 @@ public abstract class DefaultScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		GLCommon gl = Gdx.gl;
+		gl.glClearColor(0, 0, 0, 1);
+		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		gl.glEnable(GL10.GL_BLEND);
+		gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		update(delta);
 		draw(delta);
 		nextScreen(delta);

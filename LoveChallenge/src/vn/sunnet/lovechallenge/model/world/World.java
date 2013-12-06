@@ -118,6 +118,14 @@ public class World {
 
 			bg.update(delta);
 		}
+		for (int i = 0; i < lampposts.length; i++) {
+			if (cam.position.x > lampposts[i].getPosition().x
+					+ lampposts[i].getWidth() + 400) {
+				lampposts[i].setRepeat(true);
+			}
+			lampposts[i].update(delta);
+		}
+
 		createObject(delta);
 
 		cam.update();
@@ -204,7 +212,7 @@ public class World {
 
 		for (Impediment impediment : staticObjects) {
 			impediment.update(delta);
-			if(player.isFlingUp()) {
+			if (player.isFlingUp()) {
 				impediment.setCollisionPlayer(true);
 				System.out.println("true");
 			}
