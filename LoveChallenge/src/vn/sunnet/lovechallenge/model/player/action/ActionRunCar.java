@@ -12,14 +12,7 @@ public class ActionRunCar implements PlayerActionState {
 
 	@Override
 	public void flingup() {
-		if (player.isFlingAuto()) {
-			player.getVeloctity().y = 250;
-			player.getAccelation().y = player.GRAVITY;
-			player.setActionState(player.getJumpState1());
-			player.getBounds().width = player.WIDTH_JUMP;
-			player.getBounds().height = player.HEIGHT_JUMP;
-			player.setFlingAuto(false);
-		} else if (player.isFlingUp()) {
+		if (player.isFlingUp()) {
 			player.getVeloctity().y = player.VELOCITY_Y_JUMP;
 			player.getAccelation().y = player.GRAVITY;
 			player.setActionState(player.getJumpState1());
@@ -65,7 +58,7 @@ public class ActionRunCar implements PlayerActionState {
 
 	@Override
 	public void backRun() {
-
+		
 	}
 
 	@Override
@@ -81,7 +74,14 @@ public class ActionRunCar implements PlayerActionState {
 
 	@Override
 	public void jumpAutoCarToRoad() {
-
+		if (player.isFlingAuto()) {
+			player.getVeloctity().y = 50;
+			player.getAccelation().y = player.GRAVITY;
+			player.setActionState(player.getJumpState1());
+			player.getBounds().width = player.WIDTH_JUMP;
+			player.getBounds().height = player.HEIGHT_JUMP;
+			player.setFlingAuto(false);
+		}
 	}
 
 }

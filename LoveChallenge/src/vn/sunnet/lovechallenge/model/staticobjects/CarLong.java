@@ -5,25 +5,13 @@ import vn.sunnet.lovechallenge.controller.LoadMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-public class CarLong extends Impediment {
+public class CarLong extends Car {
 
-	public static final int WIDTH = LoadMap.static_car_long_width;
-	public static final int HEIGHT = LoadMap.static_car_long_height;
-	public static final int VELOCITY_X = LoadMap.player_velocity_x;
-
-	// kiem tra player co dc run hay ko
-	private boolean playerRun;
-
-	public CarLong() {
-		this(new Vector2());
-	}
+	private static final int WIDTH = LoadMap.static_car_long_width;
+	private static final int HEIGHT = LoadMap.static_car_long_height;
 
 	public CarLong(Vector2 position) {
-		super("carlong1", position);
-		velocity.x = -VELOCITY_X;
-		velocity.y = 0;
-		bounds.width = WIDTH;
-		bounds.height = HEIGHT;
+		super("", position);
 
 		switch (MathUtils.random(0, 3)) {
 		case 0:
@@ -42,19 +30,11 @@ public class CarLong extends Impediment {
 		default:
 			break;
 		}
-	}
 
-	@Override
-	public void update(float delta) {
-		super.update(delta);
-	}
-
-	public boolean isPlayerRun() {
-		return playerRun;
-	}
-
-	public void setPlayerRun(boolean playerRun) {
-		this.playerRun = playerRun;
+		velocity.x = 0;
+		velocity.y = 0;
+		bounds.width = WIDTH;
+		bounds.height = HEIGHT;
 	}
 
 }

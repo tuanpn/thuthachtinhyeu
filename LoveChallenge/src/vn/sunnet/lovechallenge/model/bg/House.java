@@ -9,11 +9,7 @@ public class House extends Background {
 	@Override
 	public void update(float delta) {
 		super.update(delta);
-		if (repeat) {
-			position.x += (width + width);
-			System.out.println("repeat");
-			repeat = false;
-		}
+		
 	}
 
 }

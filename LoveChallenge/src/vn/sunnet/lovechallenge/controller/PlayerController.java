@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vn.sunnet.lovechallenge.model.player.Player;
-import vn.sunnet.lovechallenge.model.staticobjects.CarLong;
+import vn.sunnet.lovechallenge.model.staticobjects.Car;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
 import vn.sunnet.lovechallenge.model.world.World;
 
@@ -48,11 +48,11 @@ public class PlayerController {
 		processInput(delta);
 
 		for (Impediment impediment : world.getStaticObjects()) {
-			if (impediment instanceof CarLong) {
+			if (impediment instanceof Car) {
 				if ((impediment.getBounds().width + impediment.getBounds().x < player
 						.getBounds().x + player.getBounds().width)
-						&& ((CarLong) impediment).isPlayerRun()) {
-					((CarLong) impediment).setPlayerRun(false);
+						&& ((Car) impediment).isPlayerRun()) {
+					((Car) impediment).setPlayerRun(false);
 					player.setFlingAuto(true);
 					// System.out.println("FlingAuto");
 				}

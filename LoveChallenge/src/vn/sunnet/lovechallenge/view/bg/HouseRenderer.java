@@ -35,12 +35,12 @@ public class HouseRenderer {
 		house1 = (House) world.getBackgrounds().get(6);
 		house2 = (House) world.getBackgrounds().get(7);
 
-		lamppost1 = (Lamppost) world.getBackgrounds().get(8);
-		lamppost2 = (Lamppost) world.getBackgrounds().get(9);
-		lamppost3 = (Lamppost) world.getBackgrounds().get(10);
-		lamppost4 = (Lamppost) world.getBackgrounds().get(11);
-		lamppost5 = (Lamppost) world.getBackgrounds().get(12);
-		lamppost6 = (Lamppost) world.getBackgrounds().get(13);
+		lamppost1 = world.getLampposts()[0];
+		lamppost2 = world.getLampposts()[1];
+		lamppost3 = world.getLampposts()[2];
+		lamppost4 = world.getLampposts()[3];
+		lamppost5 = world.getLampposts()[4];
+		lamppost6 = world.getLampposts()[5];
 	}
 
 	public void render(SpriteBatch batch, float delta) {

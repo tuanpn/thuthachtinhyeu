@@ -404,7 +404,7 @@ public class Player {
 
 		switch (actionState.getID()) {
 		case 0:
-			bounds.x = position.x + 40;
+			bounds.x = position.x + 45;
 			bounds.y = position.y;
 			break;
 		case 1:

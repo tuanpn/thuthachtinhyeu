@@ -31,9 +31,10 @@ public class ActionJumpOnCar implements PlayerActionState {
 	public void backRun() {
 		if (player.getPosition().y < player.POSITION_INIT_Y
 				&& player.getVeloctity().y < 0) {
-			player.getAccelation().y = 0;
-			player.getVeloctity().y = 0;
-			player.getPosition().y = player.POSITION_INIT_Y;
+//			player.getAccelation().y = 0;
+//			player.getVeloctity().y = 0;
+//			player.getPosition().y = player.POSITION_INIT_Y;
+			player.resetAll();
 			player.setActionState(player.getRunState());
 		}
 	}

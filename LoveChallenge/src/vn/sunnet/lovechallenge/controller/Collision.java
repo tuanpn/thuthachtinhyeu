@@ -1,7 +1,7 @@
 package vn.sunnet.lovechallenge.controller;
 
 import vn.sunnet.lovechallenge.model.player.Player;
-import vn.sunnet.lovechallenge.model.staticobjects.CarLong;
+import vn.sunnet.lovechallenge.model.staticobjects.Car;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
 import vn.sunnet.lovechallenge.model.world.World;
 
@@ -9,7 +9,7 @@ public class Collision {
 
 	public static void checkCollistion(World world, Player player) {
 		for (Impediment impediment : world.getStaticObjects()) {
-			if (impediment instanceof CarLong) {
+			if (impediment instanceof Car) {
 				if (player.getBounds().x + player.getBounds().width > impediment
 						.getBounds().x && impediment.isCollisionPlayer()) {
 					if (player.getPosition().y > impediment.getPosition().y
@@ -23,7 +23,8 @@ public class Collision {
 						player.setStateTimeJump1(0);
 						player.setColistionState(2);
 						impediment.setCollisionPlayer(false);
-						((CarLong) impediment).setPlayerRun(true);
+						((Car) impediment).setPlayerRun(true);
+						
 //						System.out.println("collistion : " +player.isFlingAuto());
 					} else {
 						player.setColistionState(1);

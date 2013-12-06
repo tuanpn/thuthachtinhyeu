@@ -11,6 +11,7 @@ import vn.sunnet.lovechallenge.model.staticobjects.Box1;
 import vn.sunnet.lovechallenge.model.staticobjects.Box2;
 import vn.sunnet.lovechallenge.model.staticobjects.Car;
 import vn.sunnet.lovechallenge.model.staticobjects.CarLong;
+import vn.sunnet.lovechallenge.model.staticobjects.CarShort;
 import vn.sunnet.lovechallenge.model.staticobjects.Impediment;
 import vn.sunnet.lovechallenge.model.staticobjects.Static1;
 import vn.sunnet.lovechallenge.model.staticobjects.Static2;
@@ -26,9 +27,14 @@ public class World {
 
 	// bg
 	private Array<Background> backgrounds;
+	private Lamppost[] lampposts;
 
 	public Array<Background> getBackgrounds() {
 		return backgrounds;
+	}
+
+	public Lamppost[] getLampposts() {
+		return lampposts;
 	}
 
 	// player
@@ -67,6 +73,7 @@ public class World {
 	public World() {
 		// bg
 		backgrounds = new Array<Background>();
+		lampposts = new Lamppost[6];
 		createBackground();
 		// player
 		player = new Player(0);
@@ -76,6 +83,7 @@ public class World {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 800, 480);
 		cam.position.set(400, 240, 0);
+		cam.update();
 	}
 
 	public boolean isStop() {
@@ -92,7 +100,6 @@ public class World {
 
 	public void update(float delta) {
 		cam.position.x = player.getPosition().x + 400 - player.POSITION_INIT_X;
-		cam.update();
 
 		if (sky1.getCount() == 3) {
 			typeSky = 1;
@@ -105,12 +112,16 @@ public class World {
 		}
 
 		for (Background bg : backgrounds) {
-			if (cam.position.x < -bg.getWidth()) {
+			if (cam.position.x > bg.getPosition().x + bg.getWidth() + 400) {
 				bg.setRepeat(true);
 			}
+
 			bg.update(delta);
 		}
 		createObject(delta);
+
+		cam.update();
+
 	}
 
 	private void createBackground() {
@@ -128,14 +139,14 @@ public class World {
 		backgrounds.add(new BackgroundLayer2(0, 843, 201));
 		// add house 6
 		backgrounds.add(new House(0, 0, 0, 3000, 1000));
-		backgrounds.add(new House(0, 3000, 0, 3000, 1000));
+		backgrounds.add(new House(1, 3000, 0, 3000, 1000));
 		// lamppost
-		backgrounds.add(new Lamppost(0, 20, 60));
-		backgrounds.add(new Lamppost(0, 520, 60));
-		backgrounds.add(new Lamppost(0, 1020, 60));
-		backgrounds.add(new Lamppost(0, 1520, 60));
-		backgrounds.add(new Lamppost(0, 2020, 60));
-		backgrounds.add(new Lamppost(0, 2520, 60));
+		lampposts[0] = new Lamppost(0, 20, 120);
+		lampposts[1] = new Lamppost(0, 520, 120);
+		lampposts[2] = new Lamppost(0, 1020, 120);
+		lampposts[3] = new Lamppost(0, 1520, 120);
+		lampposts[4] = new Lamppost(0, 2020, 120);
+		lampposts[5] = new Lamppost(0, 2520, 120);
 	}
 
 	// sinh ra các chướng ngại vật
@@ -145,43 +156,44 @@ public class World {
 		if (stateTimeObject > timeCreate) {
 			stateTimeObject = 0;
 			timeCreate = MathUtils.random(3.f, 5.f);
-			switch (MathUtils.random(0, 7)) {
+			switch (MathUtils.random(7, 7)) {
 			case 0:
-				staticObjects.add(new Car(new Vector2(player.getPosition().x
-						+ MathUtils.random(1000, 1200), 10)));
+				staticObjects.add(new CarShort(new Vector2(
+						player.getPosition().x + MathUtils.random(1000, 1200),
+						55)));
 				break;
 			case 1:
 				staticObjects.add(new Box1(new Vector2(player.getPosition().x
-						+ MathUtils.random(1000, 1200), 10)));
+						+ MathUtils.random(1000, 1200), 75)));
 				break;
 			case 2:
 				staticObjects.add(new Box2(new Vector2(player.getPosition().x
-						+ MathUtils.random(1000, 1200), 20)));
+						+ MathUtils.random(1000, 1200), 75)));
 				break;
 			case 3:
 				staticObjects.add(new Static1(new Vector2(
 						player.getPosition().x + MathUtils.random(1000, 1200),
-						5)));
+						60)));
 				break;
 			case 4:
 				staticObjects.add(new Static2(new Vector2(
 						player.getPosition().x + MathUtils.random(1000, 1200),
-						20)));
+						55)));
 				break;
 			case 5:
 				staticObjects.add(new Static3(new Vector2(
 						player.getPosition().x + MathUtils.random(1000, 1200),
-						20)));
+						75)));
 				break;
 			case 6:
 				staticObjects.add(new Static4(new Vector2(
 						player.getPosition().x + MathUtils.random(1000, 1200),
-						20)));
+						80)));
 				break;
 			case 7:
 				staticObjects.add(new CarLong(new Vector2(
-						player.getPosition().x + MathUtils.random(1100, 1200),
-						10)));
+						player.getPosition().x + MathUtils.random(1000, 1200),
+						60)));
 				break;
 
 			default:
@@ -192,7 +204,12 @@ public class World {
 
 		for (Impediment impediment : staticObjects) {
 			impediment.update(delta);
-			if (impediment.getPosition().x < -impediment.getBounds().width - 100) {
+			if(player.isFlingUp()) {
+				impediment.setCollisionPlayer(true);
+				System.out.println("true");
+			}
+			if (impediment.getPosition().x < cam.position.x - 400
+					- impediment.getBounds().width) {
 				staticObjects.removeValue(impediment, true);
 				break;
 			}

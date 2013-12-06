@@ -31,20 +31,19 @@ public class PlayerRenderer {
 		runNomal.setPosition(world.getPlayer().getPosition().x, world
 				.getPlayer().getPosition().y);
 
-//		runCry = Resources.getInstance().player_run_cry;
-//		runCry.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
-//				.getPosition().y);
+		// runCry = Resources.getInstance().player_run_cry;
+		// runCry.setPosition(world.getPlayer().getPosition().x,
+		// world.getPlayer()
+		// .getPosition().y);
 
 		jump1 = Resources.getInstance().player_jump_1;
 		jump2 = Resources.getInstance().player_jump_2;
 		sit = Resources.getInstance().player_sit;
 
 		die1 = Resources.getInstance().player_die_1;
-		die1.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
-				.getPosition().y);
+
 		die2 = Resources.getInstance().player_die_2;
-		die2.setPosition(world.getPlayer().getPosition().x, world.getPlayer()
-				.getPosition().y);
+
 	}
 
 	public void render(SpriteBatch batch, float delta) {
@@ -81,9 +80,13 @@ public class PlayerRenderer {
 		case 3:
 			switch (player.getTypeDie()) {
 			case 1:
+				die1.setPosition(world.getPlayer().getPosition().x, world
+						.getPlayer().getPosition().y);
 				die1.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
 				break;
 			case 2:
+				die2.setPosition(world.getPlayer().getPosition().x, world
+						.getPlayer().getPosition().y);
 				die2.getKeyFrame(player.getStateTimeDie(), false).draw(batch);
 				break;
 
